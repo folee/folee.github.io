@@ -3,17 +3,26 @@
 <head>
   <meta charset="utf-8">
   
-  <title>OnCreate</title>
+  <title>Android开发 NDK 编译和使用静态库、动态库 | OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="OnCreate">
-<meta property="og:url" content="http://folee.github.io/">
+  <meta name="description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
+Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
+Application.mk文件：
+定义了项目的一些细节，比如APP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发 NDK 编译和使用静态库、动态库">
+<meta property="og:url" content="http://folee.github.io/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description">
+<meta property="og:description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
+Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
+Application.mk文件：
+定义了项目的一些细节，比如APP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OnCreate">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Android开发 NDK 编译和使用静态库、动态库">
+<meta name="twitter:description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
+Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
+Application.mk文件：
+定义了项目的一些细节，比如APP">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -65,9 +74,7 @@
   </div>
 </div>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Android开发-NDK-编译和使用静态库、动态库" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Android开发-NDK-编译和使用静态库、动态库" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" class="article-date">
   <time datetime="2015-02-11T13:12:46.000Z" itemprop="datePublished">2月 11 2015</time>
@@ -80,8 +87,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">Android开发 NDK 编译和使用静态库、动态库</a>
+    <h1 class="article-title" itemprop="name">
+      Android开发 NDK 编译和使用静态库、动态库
     </h1>
   
 
@@ -111,106 +118,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Android-结束进程的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/03/Android-结束进程的方法/" class="article-date">
-  <time datetime="2015-02-03T12:25:59.000Z" itemprop="datePublished">2月 3 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/Android-结束进程的方法/">Android 结束进程的方法</a>
-    </h1>
+    <a href="/2015/02/03/Android-结束进程的方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android 结束进程的方法</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>am force-<span class="operator"><span class="keyword">stop</span>: <span class="keyword">force</span> <span class="keyword">stop</span> everything associated <span class="keyword">with</span> &lt;PACKAGE&gt;.</span>
-</code></pre><p>Android 结束进程，关闭程序的方法，经过这几天的调研，发现了Android结束一个进程的方法</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/02/03/Android-结束进程的方法/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/02/03/Android-结束进程的方法/" data-id="c68i5wos2urrddfu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android常用命令/">Android常用命令</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-Android手机通过wifi进行数据传输" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/03/Android手机通过wifi进行数据传输/" class="article-date">
-  <time datetime="2015-02-03T08:56:32.000Z" itemprop="datePublished">2月 3 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/Android手机通过wifi进行数据传输/">Android手机通过wifi进行数据传输</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Wifi_File_Transfer">Wifi_File_Transfer</h3>
-<p>本文参照自：<a href="http://blog.csdn.net/sasoritattoo/article/details/8285926" target="_blank" rel="external">Android 连接Wifi和创建Wifi热点 demo</a></p>
-<ul>
-<li>Android的热点功能不可见，用了反射的技术搞定之外。  </li>
-<li>Eclipse设置语言为utf-8才能查看中文注释 </li>
-</ul>
-<p>在Android手机上可以通过在收方开启一个wifi热点,然后再发送方连接这个wifi热点。<br>这样他们就在一个局域网，然后通过socket进行通信。</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/02/03/Android手机通过wifi进行数据传输/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/02/03/Android手机通过wifi进行数据传输/" data-id="eu15scfcthdqqapy" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wifi/">Wifi</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
 </section>
         
           
