@@ -3,37 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android手机通过wifi进行数据传输 | OnCreate</title>
+  <title>Android中WebView拦截替换网络请求数据 | OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Wifi_File_Transfer
-本文参照自：Android 连接Wifi和创建Wifi热点 demo
+  <meta name="description" content="Android中处理网页时我们必然用到WebView,这里我们有这样一个需求，我们想让WebView在处理网络请求的时候将某些请求拦截替换成某些特殊的资源。具体一点儿说，在WebView加载 http://m.sogou.com 时，会加载一个logo图片，我们的需求就是将这个logo图片换成另一张图片。
 
-Android的热点功能不可见，用了反射的技术搞定之外。  
-Eclipse设置语言为utf-8才能查看中文注释 
-
-在Android手机上可以通过在收方开启一个wifi热点,然后再发送方连接这个wifi热点。这样他们就在一个局域网，然后通过socket进行通信。">
+shouldInterceptRequest">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android手机通过wifi进行数据传输">
-<meta property="og:url" content="http://folee.github.io/2015/02/03/Android手机通过wifi进行数据传输/">
+<meta property="og:title" content="Android中WebView拦截替换网络请求数据">
+<meta property="og:url" content="http://folee.github.io/2015/04/27/Android中WebView拦截替换网络请求数据/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description" content="Wifi_File_Transfer
-本文参照自：Android 连接Wifi和创建Wifi热点 demo
+<meta property="og:description" content="Android中处理网页时我们必然用到WebView,这里我们有这样一个需求，我们想让WebView在处理网络请求的时候将某些请求拦截替换成某些特殊的资源。具体一点儿说，在WebView加载 http://m.sogou.com 时，会加载一个logo图片，我们的需求就是将这个logo图片换成另一张图片。
 
-Android的热点功能不可见，用了反射的技术搞定之外。  
-Eclipse设置语言为utf-8才能查看中文注释 
-
-在Android手机上可以通过在收方开启一个wifi热点,然后再发送方连接这个wifi热点。这样他们就在一个局域网，然后通过socket进行通信。">
-<meta property="og:image" content="http://img0.ph.126.net/GSNIwWnUJ97ARGhuDqZpBg==/1409345208490597254.png">
-<meta property="og:image" content="http://img1.ph.126.net/uWZa6gz4nQ1LrbsEs4xC-w==/4843902874313781565.png">
+shouldInterceptRequest">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android手机通过wifi进行数据传输">
-<meta name="twitter:description" content="Wifi_File_Transfer
-本文参照自：Android 连接Wifi和创建Wifi热点 demo
+<meta name="twitter:title" content="Android中WebView拦截替换网络请求数据">
+<meta name="twitter:description" content="Android中处理网页时我们必然用到WebView,这里我们有这样一个需求，我们想让WebView在处理网络请求的时候将某些请求拦截替换成某些特殊的资源。具体一点儿说，在WebView加载 http://m.sogou.com 时，会加载一个logo图片，我们的需求就是将这个logo图片换成另一张图片。
 
-Android的热点功能不可见，用了反射的技术搞定之外。  
-Eclipse设置语言为utf-8才能查看中文注释 
-
-在Android手机上可以通过在收方开启一个wifi热点,然后再发送方连接这个wifi热点。这样他们就在一个局域网，然后通过socket进行通信。">
+shouldInterceptRequest">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -85,10 +71,10 @@ Eclipse设置语言为utf-8才能查看中文注释
   </div>
 </div>
       <div class="outer">
-        <section id="main"><article id="post-Android手机通过wifi进行数据传输" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Android中WebView拦截替换网络请求数据" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/02/03/Android手机通过wifi进行数据传输/" class="article-date">
-  <time datetime="2015-02-03T08:56:32.000Z" itemprop="datePublished">2月 3 2015</time>
+    <a href="/2015/04/27/Android中WebView拦截替换网络请求数据/" class="article-date">
+  <time datetime="2015-04-27T06:56:49.000Z" itemprop="datePublished">4月 27 2015</time>
 </a>
     
   </div>
@@ -99,7 +85,7 @@ Eclipse设置语言为utf-8才能查看中文注释
         
   
     <h1 class="article-title" itemprop="name">
-      Android手机通过wifi进行数据传输
+      Android中WebView拦截替换网络请求数据
     </h1>
   
 
@@ -107,29 +93,29 @@ Eclipse设置语言为utf-8才能查看中文注释
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Wifi_File_Transfer">Wifi_File_Transfer</h3>
-<p>本文参照自：<a href="http://blog.csdn.net/sasoritattoo/article/details/8285926" target="_blank" rel="external">Android 连接Wifi和创建Wifi热点 demo</a></p>
-<ul>
-<li>Android的热点功能不可见，用了反射的技术搞定之外。  </li>
-<li>Eclipse设置语言为utf-8才能查看中文注释 </li>
-</ul>
-<p>在Android手机上可以通过在收方开启一个wifi热点,然后再发送方连接这个wifi热点。<br>这样他们就在一个局域网，然后通过socket进行通信。</p>
+        <p>Android中处理网页时我们必然用到WebView,这里我们有这样一个需求，我们想让WebView在处理网络请求的时候将某些请求拦截替换成某些特殊的资源。具体一点儿说，在WebView加载 <strong><a href="http://m.sogou.com" target="_blank" rel="external">http://m.sogou.com</a></strong> 时，会加载一个logo图片，我们的需求就是将这个logo图片换成另一张图片。</p>
+<blockquote>
+<p>shouldInterceptRequest</p>
+</blockquote>
 <a id="more"></a>
-<p>本文的demo程序写得比较简单。</p>
-<p>对于收方，首先点击“创建wifi热点”按钮，开启一个wifi热点，然后点击“开启接受”按钮，准备接受数据。<br>图1为收方</p>
-<p><img src="http://img0.ph.126.net/GSNIwWnUJ97ARGhuDqZpBg==/1409345208490597254.png" alt="alt text" title="图1"></p>
-<p>对于发方，首先点击“连接wifi热点”按钮，连接收方的wifi热点，然后点击“开启发送”按钮，开始发送数据。<br>图2为发方。</p>
-<p><img src="http://img1.ph.126.net/uWZa6gz4nQ1LrbsEs4xC-w==/4843902874313781565.png" alt="alt text" title="图2"></p>
-<p>=======</p>
-<p>源码Github: <a href="https://github.com/folee/Wifi_File_Transfer" target="_blank" rel="external">Wifi_File_Transfer</a></p>
+<p>好在Android中的WebView比较强大，从API 11(Android 3.0)开始， <em>shouldInterceptRequest</em>被引入就是为了解决这一类的问题。</p>
+<p><em>shouldInterceptRequest</em>这个回调可以通知主程序WebView处理的资源（css,js,image等）请求，并允许主程序进行处理后返回数据。如果主程序返回的数据为null，WebView会自行请求网络加载资源，否则使用主程序提供的数据。注意这个回调发生在非UI线程中,所以进行UI系统相关的操作是不可以的。</p>
+<p><em>shouldInterceptRequest</em>有两种重载。</p>
+<ul>
+<li><em>public WebResourceResponse shouldInterceptRequest (WebView view, String url)</em> 从API 11开始引入，API 21弃用</li>
+<li><em>public WebResourceResponse shouldInterceptRequest (WebView view, WebResourceRequest request)</em> 从API 21开始引入<br>本次例子暂时使用第一种，即<em>shouldInterceptRequest (WebView view, String url)</em>。</li>
+</ul>
+<p>示例代码</p>
+<p><pre><code><br>WebView webView = new WebView(this);<br>webView.setWebViewClient(new WebViewClient() {</code></pre></p>
+<p>  @Override<br>  public WebResourceResponse shouldInterceptRequest(WebView view,  String url) {<br>      Log.i(LOGTAG, “shouldInterceptRequest url=” + url + “;threadInfo” + Thread.currentThread());<br>      WebResourceResponse response = null;<br>      if (url.contains(“logo”)) {<br>          try {<br>              InputStream localCopy = getAssets().open(“droidyue.png”);<br>              response = new WebResourceResponse(“image/png”, “UTF-8”, localCopy);<br>          } catch (IOException e) {<br>              e.printStackTrace();<br>          }<br>      }<br>      return response;<br>  }<br>});<br>setContentView(webView);<br>webView.loadUrl(“<a href="http://m.sogou.com" target="_blank" rel="external">http://m.sogou.com</a>“);<br><br>其中WebResourceResponse需要设定三个属性，MIME类型，数据编码，数据(InputStream流形式)。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/02/03/Android手机通过wifi进行数据传输/" data-id="eu15scfcthdqqapy" class="article-share-link">Share</a>
+      <a data-url="http://folee.github.io/2015/04/27/Android中WebView拦截替换网络请求数据/" data-id="7l3son2sql9k3llg" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Wifi/">Wifi</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webview/">Webview</a></li></ul>
 
     </footer>
   </div>
@@ -137,15 +123,11 @@ Eclipse设置语言为utf-8才能查看中文注释
     
 <nav id="article-nav">
   
-    <a href="/2015/02/03/Android-结束进程的方法/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android 结束进程的方法
-        
-      </div>
-    </a>
   
+    <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android开发 NDK 编译和使用静态库、动态库</div>
+    </a>
   
 </nav>
 
