@@ -93,7 +93,7 @@
         <p>　　关于进程守护，从接触Android没多久就一直想实现，网上给出的方案也是各种各样，有双服务方式，有利用系统定时器方式的等等等等，但我都有过尝试，最终都没有达到自己想要的结果。</p>
 <p>　　后来想到自己以前在搞linux的时候用到子进程来处理一些任务，而Android正是基于linux的，觉得这样的话应该是可行的。最初直接在JNI的c代码中fork出一个子进程出来，然后在子进程中加一个while(1)，再在while中sleep并打开一个指定的service，这样一个最简单的守护完成了。</p>
 <p>　　但是后来测试发现，虽然能实现功能，不过使用adb shell查看进程(命令: ps | grep com.coolerfall….)，发现fork出来的进程的VSIZE(进程虚拟地址空间大小)和RSS(进程正在使用的物理内存的大小)都很大，而且UI线程有时候会出现莫名其妙的问题，于是进程守护也就暂时放下了。<br>　　<br>　　后来由于项目需求，又不得不开始折腾进程守护。一次在看开源项目afwall(android上的流量防火墙)，发现其中的命令是直接使用linux命令行的方式在执行的，这才想起linux可以直接编译一个可执行的二进制文件，然后在命令行中直接执行。看了看Android.mk的文档，加入include $(BUILD_EXECUTABLE)可以让c文件编译成在Android上运行的二进制文件，最后把以前的代码直接拿过来，一切OK了。<br><a id="more"></a><br>原理分析：</p>
-<pre><code>
+<pre class="brush: xml">
 int main(int argc, char *argv[])
 {
     pid_t pid;
@@ -122,65 +122,75 @@ int main(int argc, char *argv[])
         /* parent process, do nothing */
     }
 }
-</code></pre>
+</pre>
+
 
 <p>由于要在shell中直接执行，因此这里使用int main(int argc, char *argv[])，让可执行文件有入口。frok出子进程之后，让子进程成为新的会话的领头进程，并与其父进程的会话组和进程组脱离，紧接着就是在子进程中定时去启动服务，这样一个简单的进程守护就OK了。 其中start_service为启动一个Service:</p>
-<pre><code><span class="comment">/* start daemon service */</span>
-<span class="keyword">static</span> <span class="keyword">void</span> start_service(<span class="keyword">char</span> *package_name, <span class="keyword">char</span> *service_name)
+<pre class="brush: xml">
+/* start daemon service */
+static void start_service(char *package_name, char *service_name)
 {
-<span class="comment">/* get the sdk version */</span>
-<span class="keyword">int</span> version = get_version();
+    /* get the sdk version */
+    int version = get_version();
 
-pid_t pid;
+    pid_t pid;
 
-<span class="keyword">if</span> ((pid = fork()) &lt; <span class="number">0</span>)
-{
-    exit(EXIT_SUCCESS);
-}
-<span class="keyword">else</span> <span class="keyword">if</span> (pid == <span class="number">0</span>)
-{
-    <span class="keyword">if</span> (package_name == <span class="keyword">NULL</span> || service_name == <span class="keyword">NULL</span>)
+    if ((pid = fork()) < 0)
     {
-        LOGE(LOG_TAG, <span class="string">"package name or service name is null"</span>);
-        <span class="keyword">return</span>;
+        exit(EXIT_SUCCESS);
     }
-
-    <span class="keyword">char</span> *p_name = str_stitching(package_name, <span class="string">"/"</span>);
-    <span class="keyword">char</span> *s_name = str_stitching(p_name, service_name);
-    LOGD(LOG_TAG, <span class="string">"service: %s"</span>, s_name);
-
-    <span class="keyword">if</span> (version &gt;= <span class="number">17</span> || version == <span class="number">0</span>)
+    else if (pid == 0)
     {
-        <span class="keyword">int</span> ret = execlp(<span class="string">"am"</span>, <span class="string">"am"</span>, <span class="string">"startservice"</span>,
-                    <span class="string">"--user"</span>, <span class="string">"0"</span>, <span class="string">"-n"</span>, s_name, (<span class="keyword">char</span> *) <span class="keyword">NULL</span>);
-        LOGD(LOG_TAG, <span class="string">"result %d"</span>, ret);
-    }
-    <span class="keyword">else</span>
-    {
-        execlp(<span class="string">"am"</span>, <span class="string">"am"</span>, <span class="string">"startservice"</span>, <span class="string">"-n"</span>, s_name, (<span class="keyword">char</span> *) <span class="keyword">NULL</span>);
-    }
+        if (package_name == NULL || service_name == NULL)
+        {
+            LOGE(LOG_TAG, "package name or service name is null");
+            return;
+        }
 
-    LOGD(LOG_TAG , <span class="string">"exit start-service child process"</span>);
-    exit(EXIT_SUCCESS);
-}
-}
-</code></pre><p>这里说明下：execlp执行后，如果没有错误则不返回，有错时才有返回值，因此又fork了一个子进程，然后在子进程中启动指定的Service。其次是Android SDK版本小于17的执行命令有所不同，17及以上命令为：execlp(“am”, “am”, “startservice”, “—user”, “0”, “-n”, s_name, (char <em>) NULL), 17以下:execlp(“am”, “am”, “startservice”, “-n”, s_name, (char </em>) NULL)。获取version比较简单:</p>
-<pre><code>#include &lt;sys/system_properties.h&gt;
+        char *p_name = str_stitching(package_name, "/");
+        char *s_name = str_stitching(p_name, service_name);
+        LOGD(LOG_TAG, "service: %s", s_name);
 
-<span class="javadoc">/**
+        if (version >= 17 || version == 0)
+        {
+            int ret = execlp("am", "am", "startservice",
+                        "--user", "0", "-n", s_name, (char *) NULL);
+            LOGD(LOG_TAG, "result %d", ret);
+        }
+        else
+        {
+            execlp("am", "am", "startservice", "-n", s_name, (char *) NULL);
+        }
+
+        LOGD(LOG_TAG , "exit start-service child process");
+        exit(EXIT_SUCCESS);
+    }
+}
+</pre>
+
+<p>这里说明下：execlp执行后，如果没有错误则不返回，有错时才有返回值，因此又fork了一个子进程，然后在子进程中启动指定的Service。其次是Android SDK版本小于17的执行命令有所不同，17及以上命令为：execlp(“am”, “am”, “startservice”, “—user”, “0”, “-n”, s_name, (char <em>) NULL), 17以下:execlp(“am”, “am”, “startservice”, “-n”, s_name, (char </em>) NULL)。获取version比较简单:</p>
+<pre class="brush: xml">
+#include <sys system_properties.h="">
+
+/**
  * Get the version of current SDK.
- */</span>
-<span class="keyword">int</span> get_version()
+ */
+int get_version()
 {
-    <span class="keyword">char</span> value[<span class="number">8</span>] = <span class="string">""</span>;
-    __system_property_get(<span class="string">"ro.build.version.sdk"</span>, value);
+    char value[8] = "";
+    __system_property_get("ro.build.version.sdk", value);
 
-    <span class="keyword">return</span> atoi(value);
+    return atoi(value);
 }
-</code></pre><p>由于编译出来的是可执行的二进制文件，所以调用就不像so库那样了。需要将可执行文件放在assets中，并在执行的时候将其copy至/data/data//app_bin文件夹下，然后在java中这样调用:</p>
-<pre><code><span class="constant">String cmd</span> = <span class="string">"/data/data/&lt;packagename&gt;/app_bin/daemon"</span>
-<span class="constant">Runtime.getRuntime().exec(cmd);</span>
-</code></pre><p>进程守护大致的原理就是这样了，只要搞清楚了原理，其实是进程守护并不复杂。<br>ps: 并不是所有手机都能用此方法实现进程守护，主要是因为现目前的进程清理软件不会清理c层fork出的进程，但有的手机（如小米），自带清理进程会清理掉应用相关的所有进程，故而不能实现进程守护。</p>
+</sys></pre>
+
+<p>由于编译出来的是可执行的二进制文件，所以调用就不像so库那样了。需要将可执行文件放在assets中，并在执行的时候将其copy至/data/data//app_bin文件夹下，然后在java中这样调用:</p>
+<pre class="brush: xml">
+    String cmd = "/data/data/<packagename>/app_bin/daemon"
+    Runtime.getRuntime().exec(cmd);
+</packagename></pre>
+
+<p>进程守护大致的原理就是这样了，只要搞清楚了原理，其实是进程守护并不复杂。<br>ps: 并不是所有手机都能用此方法实现进程守护，主要是因为现目前的进程清理软件不会清理c层fork出的进程，但有的手机（如小米），自带清理进程会清理掉应用相关的所有进程，故而不能实现进程守护。</p>
 
       
     </div>
