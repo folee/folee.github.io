@@ -5,45 +5,42 @@
   
   <title>Android-代码规范 | OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 代码格式模板
-在 Eclipse  的 Preferences  中，选择 Java —&gt; Code Style  —&gt; Formatter 
-2.严格注释
-文件，类，方法，方法函数，变量，属性，都要注释
-3. 类命名规范
-类（classes）：名词，采用大驼峰命名法。
+  <meta name="description" content="1 代码格式模板
+在 Eclipse 的 Preferences 中，选择 Java —&gt; Code Style —&gt; Formatter
+2 严格注释
+1.1基本原则
 
 
-Activity类  AC_Main
-Fragment类  FG_MedicineBase
-公共方法类 U">
+注释应该增加代码的清晰度。代码注释的目的是要使代码更易于被其他开发人员等理解。 
+保持注释的简洁。 
+注释信息不仅要包括代码的功能，还应给出原因。 
+除变量定义等较短语句的注释可用行尾注释外，其他注释当避免使用行尾">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android-代码规范">
 <meta property="og:url" content="http://folee.github.io/2015/07/10/Android-代码规范/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description" content="1. 代码格式模板
-在 Eclipse  的 Preferences  中，选择 Java —&gt; Code Style  —&gt; Formatter 
-2.严格注释
-文件，类，方法，方法函数，变量，属性，都要注释
-3. 类命名规范
-类（classes）：名词，采用大驼峰命名法。
+<meta property="og:description" content="1 代码格式模板
+在 Eclipse 的 Preferences 中，选择 Java —&gt; Code Style —&gt; Formatter
+2 严格注释
+1.1基本原则
 
 
-Activity类  AC_Main
-Fragment类  FG_MedicineBase
-公共方法类 U">
+注释应该增加代码的清晰度。代码注释的目的是要使代码更易于被其他开发人员等理解。 
+保持注释的简洁。 
+注释信息不仅要包括代码的功能，还应给出原因。 
+除变量定义等较短语句的注释可用行尾注释外，其他注释当避免使用行尾">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android-代码规范">
-<meta name="twitter:description" content="1. 代码格式模板
-在 Eclipse  的 Preferences  中，选择 Java —&gt; Code Style  —&gt; Formatter 
-2.严格注释
-文件，类，方法，方法函数，变量，属性，都要注释
-3. 类命名规范
-类（classes）：名词，采用大驼峰命名法。
+<meta name="twitter:description" content="1 代码格式模板
+在 Eclipse 的 Preferences 中，选择 Java —&gt; Code Style —&gt; Formatter
+2 严格注释
+1.1基本原则
 
 
-Activity类  AC_Main
-Fragment类  FG_MedicineBase
-公共方法类 U">
+注释应该增加代码的清晰度。代码注释的目的是要使代码更易于被其他开发人员等理解。 
+保持注释的简洁。 
+注释信息不仅要包括代码的功能，还应给出原因。 
+除变量定义等较短语句的注释可用行尾注释外，其他注释当避免使用行尾">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -117,42 +114,99 @@ Fragment类  FG_MedicineBase
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-_代码格式模板">1. 代码格式模板</h3>
-<p>在 Eclipse  的 Preferences  中，选择 Java —&gt; Code Style  —&gt; Formatter </p>
-<h3 id="2-严格注释">2.严格注释</h3>
-<p>文件，类，方法，方法函数，变量，属性，都要注释</p>
-<h3 id="3-_类命名规范">3. 类命名规范</h3>
+        <h2 id="1_代码格式模板">1 代码格式模板</h2>
+<p>在 Eclipse 的 Preferences 中，选择 Java —&gt; Code Style —&gt; Formatter</p>
+<h2 id="2_严格注释">2 严格注释</h2>
+<h3 id="1-1基本原则">1.1基本原则</h3>
+<blockquote>
+<ul>
+<li>注释应该增加代码的清晰度。代码注释的目的是要使代码更易于被其他开发人员等理解。 </li>
+<li>保持注释的简洁。 </li>
+<li>注释信息不仅要包括代码的功能，还应给出原因。 </li>
+<li>除变量定义等较短语句的注释可用行尾注释外，其他注释当避免使用行尾注释。</li>
+</ul>
+</blockquote>
+<a id="more"></a>
+<h3 id="2-2_类、接口的注释">2.2 类、接口的注释</h3>
+<p>在类、接口定义之前当对其进行注释，包括类、接口的目的、作用、功能、继承于何种父类，实现的接口、实现的算法、使用方法等。(类注释请参照，项目中统一的注释模板，团队成员统一将 IDE 设置为统一的类注释模板)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line"> * 类相关功能说明</div><div class="line"> * </div><div class="line"> *<span class="javadoctag"> @Description</span>: 说明</div><div class="line"> * </div><div class="line"> *<span class="javadoctag"> @author</span>: 作者</div><div class="line">*<span class="javadoctag"> @date</span>: 2014-03-27 下午7:54:01</div><div class="line"> *<span class="javadoctag"> @version</span>: 1.0</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringUtil</span> </span>{ </div><div class="line">⋯ </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="2-3_方法的注释">2.3 方法的注释</h3>
+<p>依据标准JavaDoc规范对方法进行注释，以明确该方法功能、作用、各参数含义以及返回值等。复杂的算法用/**/在方法内注解出。 </p>
+<blockquote>
+<ul>
+<li>参数:注释时当注明其取值范围等 </li>
+<li>返回值:当注释出失败、错误、异常时的返回情况。 </li>
+<li>异常:当注释出什么情况、什么时候、什么条件下会引发什么样的异常 </li>
+</ul>
+</blockquote>
+<p>方法注释示例 </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="javadoc">/**</span></div><div class="line">  *<span class="javadoctag"> @param</span> 参数名1</div><div class="line">  * 参数1意义</div><div class="line">  *<span class="javadoctag"> @param</span> 参数名2</div><div class="line">  * 参数2意义</div><div class="line">  *<span class="javadoctag"> @return</span></div><div class="line">  * return说明</div><div class="line">  *<span class="javadoctag"> @exception</span> 异常类型1，异常类型2</div><div class="line">  * 异常说明1，异常说明2</div><div class="line">  *<span class="javadoctag"> @author</span>: 作者</div><div class="line">*<span class="javadoctag"> @date</span>: 2014-03-27 下午7:54:01</div><div class="line">*/</div><div class="line"><span class="keyword">public</span> ResultSet <span class="title">executeQuery</span>(String sql) <span class="keyword">throws</span> SQLException{     <span class="comment">//Statement和SQL语句都不能为空 </span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">null</span> != stmt && !StringUtil.isEmpty(sql)){ </div><div class="line">        <span class="comment">//返回查询执行结果 </span></div><div class="line">        <span class="keyword">return</span> stmt.executeQuery(sql); </div><div class="line">    } </div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>; </div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h3 id="2-4_变量，关键代码的注释">2.4 变量，关键代码的注释</h3>
+<pre><code>根据需要选择单行注释  <span class="comment">//</span>
+或者多行注释 <span class="javadoc">/**
+            * 注释
+            */</span>
+</code></pre><blockquote>
+<ul>
+<li>核心功能必须添加注释，详细说明逻辑的实现细节</li>
+<li>复杂条件判断时，必须添加注释</li>
+<li>应对重要的变量加以注释，以说明其含义</li>
+<li><code>If else  switch 必须添加注释等</code> </li>
+</ul>
+</blockquote>
+<h3 id="2-5_复杂的布局文件的注释">2.5 复杂的布局文件的注释</h3>
+<blockquote>
+<ul>
+<li><code>&lt;!-- xxxxxx --&gt;</code></li>
+</ul>
+</blockquote>
+<h2 id="3_类命名规范">3 类命名规范</h2>
 <p>类（classes）：名词，采用大驼峰命名法。</p>
 <blockquote>
 <ul>
-<li>Activity类  AC_Main</li>
-<li>Fragment类  FG_MedicineBase</li>
-<li>公共方法类 Utils为前缀或Mgr为后缀标识</li>
-<li>Service类 以Service为后缀标识 如PlayService</li>
+<li>Activity类 以AC_为前缀。 如：AC_Main</li>
+<li>Fragment类 以FG_为前缀。 如：FG_MedicineBase</li>
+<li>公共方法类 Utils_为前缀。  如：Utils_File</li>
+<li>Service类 以Service_为前缀标识。 如Service_Play</li>
+<li>Bean类 普通bean对象以BN<em>为前缀<br>`如：BN_Chat，http请求的bean对象以HM</em>为前缀。如：HM_CommonAsk`</li>
+<li>Adapter类 以AD_为前缀</li>
+<li>API接口实现类 以API_为前缀</li>
+<li>自定义view 以CV_为前缀<br><code>命名的名称 不允许有 myListView 等毫无意义的命名</code></li>
 </ul>
 </blockquote>
-<h3 id="4-_变量参数命名">4. 变量参数命名</h3>
-<h3 id="5-_layout_命名">5. layout 命名</h3>
-<p>规约：layout xml 的命名必须以全部单词小写，单词间以下划线分割，并且使用名词或名词词组，即使用 模块名_功能名称 来命名。 </p>
-<blockquote>
-<ul>
-<li>如： FG_FreeAskMedicine 用到的布局文件  命名为fg_freeaskmedicine.xml 正确</li>
-</ul>
-</blockquote>
-<h3 id="6-_id_命名">6. id 命名</h3>
-<p>  规约：命名模式为：view缩写_模块名称_view的逻辑名称, layout 中所使用的id必须以全部单词小写，单词间以下划线分割，并且使用名词或名词词组，并且要求能够通过id直接理解当前组件要实现的功能。 </p>
+<h2 id="4_id_命名">4 id 命名</h2>
+<p>规约：命名模式为：view缩写_模块名称_view的逻辑名称, layout 中所使用的id必须以全部单词小写，单词间以下划线分割，并且使用名词或名词词组，并且要求能够通过id直接理解当前组件要实现的功能。 </p>
 <blockquote>
 <ul>
 <li>如：某TextView @+id/textbookname 错误 , 应为 @+id/tv_name_show</li>
-<li>如：某EditText @+id/textbookname 错误 ,应为 @+id/et_name  </li>
+<li>如：某EditText @+id/textbookname 错误 ,应为 @+id/et_name </li>
 </ul>
 </blockquote>
-<h3 id="7-_资源命名">7. 资源命名</h3>
-<p>  规约：layout中所使用的所有资源（如drawable,style等）命名必须以全部单词小写，单词间以下划线分割，并且尽可能的使用名词或名词组，即使用 模块名_用途 来命名。如果为公共资源，如分割线等，则直接用用途来命名 </p>
+<h2 id="5_变量参数命名">5 变量参数命名</h2>
+<p>view 的命名 ： 为了区分view与其他普通变量，集合等 变量的区别，方便大家快速定位哪个是view 的。</p>
 <blockquote>
 <ul>
-<li>如：menu_icon_navigate.png  正确 </li>
-<li>如：某分割线：line.png  或 separator.png 正确</li>
+<li>JAVA类中的<code>View</code>的命名遵循和布局文件中的ID 一致，都已小写字母 + 下划线 + 小写字母的方式 命名。</li>
+<li>普通的变量 ： 还是遵循 驼峰式命名规范 已小写字母m开头<pre><code>     如：<span class="built_in">String</span> title；    
+</code></pre></li>
+<li>常量 统一 大写 + 下划线 + 大写+ 下划线 </li>
+</ul>
+</blockquote>
+<h2 id="6-_layout_命名">6. layout 命名</h2>
+<p>规约：layout xml 的命名必须以全部单词小写，单词间以下划线分割，并且使用名词或名词词组，即使用 模块名_功能名称 来命名。 </p>
+<blockquote>
+<ul>
+<li>如： FG_FreeAskMedicine 用到的布局文件 命名为fg_freeaskmedicine.xml 正确</li>
+</ul>
+</blockquote>
+<h2 id="7-_资源命名">7. 资源命名</h2>
+<p>规约：layout中所使用的所有资源（如drawable,style等）命名必须以全部单词小写，单词间以下划线分割，并且尽可能的使用名词或名词组，即使用 模块名_用途 来命名。如果为公共资源，如分割线等，则直接用用途来命名 </p>
+<blockquote>
+<ul>
+<li>如：menu_icon_navigate.png 正确 </li>
+<li>如：某分割线：line.png 或 separator.png 正确</li>
 </ul>
 </blockquote>
 
