@@ -3,26 +3,41 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Android开发 NDK 编译和使用静态库、动态库 | OnCreate</title>
+  <title>OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
-Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
-Application.mk文件：
-定义了项目的一些细节，比如APP">
+  <meta name="description" content="Android相册模块实现
+标签（空格分隔）： 未分类
+
+使用Loader实现异步动态加载检索本地图片数据
+1.Loader特性：
+(1).对于每个Activity或者Fragment都可用(2).提供异步加载数据(3).监视数据资源，当内容改变时重新更新(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据
+2.Loader相关类接口
+(1).LoaderManager
+对于">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android开发 NDK 编译和使用静态库、动态库">
-<meta property="og:url" content="http://folee.github.io/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">
+<meta property="og:title" content="OnCreate">
+<meta property="og:url" content="http://folee.github.io/2015/08/11/Android相册模块实现/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
-Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
-Application.mk文件：
-定义了项目的一些细节，比如APP">
+<meta property="og:description" content="Android相册模块实现
+标签（空格分隔）： 未分类
+
+使用Loader实现异步动态加载检索本地图片数据
+1.Loader特性：
+(1).对于每个Activity或者Fragment都可用(2).提供异步加载数据(3).监视数据资源，当内容改变时重新更新(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据
+2.Loader相关类接口
+(1).LoaderManager
+对于">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android开发 NDK 编译和使用静态库、动态库">
-<meta name="twitter:description" content="在eclipse工程目录下建立一个jni的文件夹。在jni文件夹中建立Android.mk和Application.mk文件。Android.mk文件：
-Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。
-Application.mk文件：
-定义了项目的一些细节，比如APP">
+<meta name="twitter:title" content="OnCreate">
+<meta name="twitter:description" content="Android相册模块实现
+标签（空格分隔）： 未分类
+
+使用Loader实现异步动态加载检索本地图片数据
+1.Loader特性：
+(1).对于每个Activity或者Fragment都可用(2).提供异步加载数据(3).监视数据资源，当内容改变时重新更新(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据
+2.Loader相关类接口
+(1).LoaderManager
+对于">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -74,67 +89,58 @@ Application.mk文件：
   </div>
 </div>
       <div class="outer">
-        <section id="main"><article id="post-Android开发-NDK-编译和使用静态库、动态库" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Android相册模块实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" class="article-date">
-  <time datetime="2015-02-11T13:12:46.000Z" itemprop="datePublished">2月 11 2015</time>
+    <a href="/2015/08/11/Android相册模块实现/" class="article-date">
+  <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Android开发 NDK 编译和使用静态库、动态库
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在eclipse工程目录下建立一个jni的文件夹。<br>在jni文件夹中建立Android.mk和Application.mk文件。<br>Android.mk文件：</p>
-<p>Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。</p>
-<p>Application.mk文件：</p>
-<p>定义了项目的一些细节，比如APP_ABI := x86(编译X86平台库)、APP_PLATFORM := android-9(使用android-9以上的平台库)。</p>
-<p>用cd命令移至jni目录，运行/mnt/500G/public/NDK/android-ndk-r7b/ndk-build命令，这时命令行中可能会出现编译错误，比如头文件找不到，函数找不到等等，细心找找就能改掉。<br>编译成功后，在工程目录下libs/x86中就会生成你想要的.so库。<br>NDK 编译和使用静态库、动态库<br>情况一：编译静态库<br>情况二：编译动态库<br>情况三：编译动态库+静态库<br>情况四：已有第三方静态库（动态库），编译静态库（动态库）</p>
-<a id="more"></a>
-<p>默认所有代码和文件在$project/jni下，否则特殊说明。<br>情况一：编译静态库<br>文件Android.mk:<br>LOCAL_PATH := $(call my-dir)<br>include $(CLEAR_VARS)<br>LOCAL_MODULE    := hello-jni<br>LOCAL_SRC_FILES := hello-jni.c<br>include $(BUILD_STATIC_LIBRARY)</p>
-<p>文件Application.mk:<br>APP_MODULES :=hello-jni</p>
-<p>情况二：编译动态库<br>文件Android.mk:<br>LOCAL_PATH := $(call my-dir)<br>include $(CLEAR_VARS)<br>LOCAL_MODULE    := hello-jni<br>LOCAL_SRC_FILES := hello-jni.c<br>include $(BUILD_SHARED_LIBRARY)<br>情况三：编译动态库+静态库<br>文件Android.mk:<br>LOCAL_PATH := $(call my-dir)<br>include $(CLEAR_VARS)<br>LOCAL_MODULE    := mylib_static<br>LOCAL_SRC_FILES := src.c<br>include $(BUILD_STATIC_LIBRARY)<br>include $(CLEAR_VARS)<br>LOCAL_MODULE    := mylib_shared<br>LOCAL_SRC_FILES := src2.c<br>LOCAL_STATIC_LIBRARIES := mylib_static<br>include $(BUILD_SHARED_LIBRARY)<br>情况四：已有第三方静态库(动态库)，编译静态库(动态库)<br>文件Android.mk:<br>LOCAL_PATH := $(call my-dir)<br>include $(CLEAR_VARS)<br>LOCAL_MODULE := thirdlib1      # name it whatever<br>LOCAL_SRC_FILES := $(TARGET_ARCH_ABI)/libthird1.a     # or $(so_path)/libthird1.so</p>
-<h1 id="LOCAL_EXPORT_C_INCLUDES_:=_$(LOCAL_PATH)/include">LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/include</h1>
-<p>include $(PREBUILT_STATIC_LIBRARY)    #or PREBUILT_SHARED_LIBRARY<br>include $(CLEAR_VARS)<br>LOCAL_MODULE    := mylib_use_thirdlib<br>LOCAL_SRC_FILES := src.c<br>LOCAL_STATIC_LIBRARIES := thirdlib1       #or LOCAL_SHARED_LIBRARY<br>include $(BUILD_SHARED_LIBRARY)   #如果编译静态库，需要Application.mk</p>
+        <h1 id="Android相册模块实现">Android相册模块实现</h1>
+<p>标签（空格分隔）： 未分类</p>
+<hr>
+<h2 id="使用Loader实现异步动态加载检索本地图片数据">使用Loader实现异步动态加载检索本地图片数据</h2>
+<h3 id="1-Loader特性：">1.Loader特性：</h3>
+<p>(1).对于每个Activity或者Fragment都可用<br>(2).提供异步加载数据<br>(3).监视数据资源，当内容改变时重新更新<br>(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据</p>
+<h3 id="2-Loader相关类接口">2.Loader相关类接口</h3>
+<h4 id="(1)-LoaderManager">(1).LoaderManager</h4>
+<p>对于每个activity或者fragment只存在一个与之相关的LoaderManager对象,该LoaderManager对象可以存在多个可供管理loader对象。</p>
+<h4 id="(2)-LoaderManager-LoaderCallbacks">(2).LoaderManager.LoaderCallbacks</h4>
+<p>LoaderManager.LoaderCallbacks是个回掉接口，用于客户端与LoaderManager的交互，loader对象就是在其接口的onCreateLoader()方法中得到，在使用时需要覆盖其方法。</p>
+<h4 id="(3)-CursorLoader">(3).CursorLoader</h4>
+<p>CursorLoader是AsyncTaskLoader的子类，通过它可以查询ContentResolver并返回一个Cursor对象，并使用该cursor对象在后台线程执行查询操作，以不至于会阻塞主线程，从一个内容提供者去异步加载数据是CursorLoader对象最大用处。</p>
+<p>在使用装载器时，会涉及很多类和接口们，表中对它们总结一下：<br>|Class/Interface   | 说明 |<br>| ————   | ——-:  |<br>|LoaderManager |一个抽像类，关联到一个Activity或Fragment，管理一个或多个装载器的实例。这帮助一个应用管理那些与Activity或Fragment的生命周期相关的长时间运行的的操作。最常见的方式是与一个CursorLoader一起使用，然而应用是可以随便写它们自己的装载器以加载其它类型的数据。每个activity或fragment只有一个LoaderManager。但是一个LoaderManager可以拥有多个装载器。|<br>|LoaderManager.LoaderCallbacks |一个用于客户端与LoaderManager交互的回调接口。例如，你使用回调方法onCreateLoader()来创建一个新的装载器。|<br>|Loader（装载器）|一个执行异步数据加载的抽象类。它是加载器的基类。你可以使用典型的CursorLoader，但是你也可以实现你自己的子类。一旦装载器被激活，它们将监视它们的数据源并且在数据改变时发送新的结果。|<br>|AsyncTaskLoader|提供一个AsyncTask来执行异步加载工作的抽象类。|<br>|CursorLoader|AsyncTaskLoader的子类，它查询ContentResolver然后返回一个Cursor。这个类为查询cursor以标准的方式实现了装载器的协议，它的游标查询是通过AsyncTaskLoader在后台线程中执行，从而不会阻塞界面。使用这个装载器是从一个ContentProvider异步加载数据的最好方式。相比之下，通过fragment或activity的API来执行一个被管理的查询就不行了。|</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" data-id="ffypafu8zko220r4" class="article-share-link">Share</a>
+      <a data-url="http://folee.github.io/2015/08/11/Android相册模块实现/" data-id="yr7nz3zkq09wcg7i" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDK/">NDK</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/04/27/Android中WebView拦截替换网络请求数据/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/11/Android 图片和UIL用法概述/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Android中WebView拦截替换网络请求数据
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2015/02/03/Android-结束进程的方法/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/08/11/Android Handler机制/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android 结束进程的方法</div>
+      <div class="article-nav-title">Android Handler机制</div>
     </a>
   
 </nav>

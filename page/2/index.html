@@ -67,6 +67,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android中WebView拦截替换网络请求数据" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/04/27/Android中WebView拦截替换网络请求数据/" class="article-date">
+  <time datetime="2015-04-27T06:56:49.000Z" itemprop="datePublished">4月 27 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/27/Android中WebView拦截替换网络请求数据/">Android中WebView拦截替换网络请求数据</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android中处理网页时我们必然用到WebView,这里我们有这样一个需求，我们想让WebView在处理网络请求的时候将某些请求拦截替换成某些特殊的资源。具体一点儿说，在WebView加载 <strong><a href="http://m.sogou.com" target="_blank" rel="external">http://m.sogou.com</a></strong> 时，会加载一个logo图片，我们的需求就是将这个logo图片换成另一张图片。</p>
+<blockquote>
+<p>shouldInterceptRequest</p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/2015/04/27/Android中WebView拦截替换网络请求数据/#more">More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://folee.github.io/2015/04/27/Android中WebView拦截替换网络请求数据/" data-id="7l3son2sql9k3llg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webview/">Webview</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android开发-NDK-编译和使用静态库、动态库" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" class="article-date">
+  <time datetime="2015-02-11T13:12:46.000Z" itemprop="datePublished">2月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">Android开发 NDK 编译和使用静态库、动态库</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在eclipse工程目录下建立一个jni的文件夹。<br>在jni文件夹中建立Android.mk和Application.mk文件。<br>Android.mk文件：</p>
+<p>Android提供的一种makefile文件，用来指定诸如编译生成so库名、引用的头文件目录、需要编译的.c/.cpp文件和.a静态库文件等。详见附件中的Android.mk。</p>
+<p>Application.mk文件：</p>
+<p>定义了项目的一些细节，比如APP_ABI := x86(编译X86平台库)、APP_PLATFORM := android-9(使用android-9以上的平台库)。</p>
+<p>用cd命令移至jni目录，运行/mnt/500G/public/NDK/android-ndk-r7b/ndk-build命令，这时命令行中可能会出现编译错误，比如头文件找不到，函数找不到等等，细心找找就能改掉。<br>编译成功后，在工程目录下libs/x86中就会生成你想要的.so库。<br>NDK 编译和使用静态库、动态库<br>情况一：编译静态库<br>情况二：编译动态库<br>情况三：编译动态库+静态库<br>情况四：已有第三方静态库（动态库），编译静态库（动态库）</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/#more">More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://folee.github.io/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/" data-id="ffypafu8zko220r4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NDK/">NDK</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android-结束进程的方法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/02/03/Android-结束进程的方法/" class="article-date">
@@ -181,6 +276,14 @@
       <ul>
         
           <li>
+            <a href="/2015/08/11/Android 图片和UIL用法概述/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/08/11/Android相册模块实现/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2015/08/11/Android Handler机制/">Android Handler机制</a>
           </li>
         
@@ -190,14 +293,6 @@
         
           <li>
             <a href="/2015/05/20/Android-App-Daemon/">Android App Daemon</a>
-          </li>
-        
-          <li>
-            <a href="/2015/04/27/Android中WebView拦截替换网络请求数据/">Android中WebView拦截替换网络请求数据</a>
-          </li>
-        
-          <li>
-            <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">Android开发 NDK 编译和使用静态库、动态库</a>
           </li>
         
       </ul>
@@ -218,7 +313,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 

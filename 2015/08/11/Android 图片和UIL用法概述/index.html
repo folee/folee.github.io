@@ -5,15 +5,27 @@
   
   <title>OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta name="description" content="Android 图片和UIL用法概述
+图片 UIL
+
+Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
+<meta property="og:type" content="article">
 <meta property="og:title" content="OnCreate">
-<meta property="og:url" content="http://folee.github.io/">
+<meta property="og:url" content="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description">
+<meta property="og:description" content="Android 图片和UIL用法概述
+图片 UIL
+
+Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OnCreate">
-<meta name="twitter:description">
+<meta name="twitter:description" content="Android 图片和UIL用法概述
+图片 UIL
+
+Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -65,9 +77,7 @@
   </div>
 </div>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
   <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
@@ -188,203 +198,20 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-Android相册模块实现" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/Android相册模块实现/" class="article-date">
-  <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android相册模块实现">Android相册模块实现</h1>
-<p>标签（空格分隔）： 未分类</p>
-<hr>
-<h2 id="使用Loader实现异步动态加载检索本地图片数据">使用Loader实现异步动态加载检索本地图片数据</h2>
-<h3 id="1-Loader特性：">1.Loader特性：</h3>
-<p>(1).对于每个Activity或者Fragment都可用<br>(2).提供异步加载数据<br>(3).监视数据资源，当内容改变时重新更新<br>(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据</p>
-<h3 id="2-Loader相关类接口">2.Loader相关类接口</h3>
-<h4 id="(1)-LoaderManager">(1).LoaderManager</h4>
-<p>对于每个activity或者fragment只存在一个与之相关的LoaderManager对象,该LoaderManager对象可以存在多个可供管理loader对象。</p>
-<h4 id="(2)-LoaderManager-LoaderCallbacks">(2).LoaderManager.LoaderCallbacks</h4>
-<p>LoaderManager.LoaderCallbacks是个回掉接口，用于客户端与LoaderManager的交互，loader对象就是在其接口的onCreateLoader()方法中得到，在使用时需要覆盖其方法。</p>
-<h4 id="(3)-CursorLoader">(3).CursorLoader</h4>
-<p>CursorLoader是AsyncTaskLoader的子类，通过它可以查询ContentResolver并返回一个Cursor对象，并使用该cursor对象在后台线程执行查询操作，以不至于会阻塞主线程，从一个内容提供者去异步加载数据是CursorLoader对象最大用处。</p>
-<p>在使用装载器时，会涉及很多类和接口们，表中对它们总结一下：<br>|Class/Interface   | 说明 |<br>| ————   | ——-:  |<br>|LoaderManager |一个抽像类，关联到一个Activity或Fragment，管理一个或多个装载器的实例。这帮助一个应用管理那些与Activity或Fragment的生命周期相关的长时间运行的的操作。最常见的方式是与一个CursorLoader一起使用，然而应用是可以随便写它们自己的装载器以加载其它类型的数据。每个activity或fragment只有一个LoaderManager。但是一个LoaderManager可以拥有多个装载器。|<br>|LoaderManager.LoaderCallbacks |一个用于客户端与LoaderManager交互的回调接口。例如，你使用回调方法onCreateLoader()来创建一个新的装载器。|<br>|Loader（装载器）|一个执行异步数据加载的抽象类。它是加载器的基类。你可以使用典型的CursorLoader，但是你也可以实现你自己的子类。一旦装载器被激活，它们将监视它们的数据源并且在数据改变时发送新的结果。|<br>|AsyncTaskLoader|提供一个AsyncTask来执行异步加载工作的抽象类。|<br>|CursorLoader|AsyncTaskLoader的子类，它查询ContentResolver然后返回一个Cursor。这个类为查询cursor以标准的方式实现了装载器的协议，它的游标查询是通过AsyncTaskLoader在后台线程中执行，从而不会阻塞界面。使用这个装载器是从一个ContentProvider异步加载数据的最好方式。相比之下，通过fragment或activity的API来执行一个被管理的查询就不行了。|</p>
+  
+    <a href="/2015/08/11/Android相册模块实现/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/08/11/Android相册模块实现/" data-id="yr7nz3zkq09wcg7i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
 
-
-  
-    <article id="post-Android Handler机制" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/Android Handler机制/" class="article-date">
-  <time datetime="2015-08-11T07:31:39.000Z" itemprop="datePublished">8月 11 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/11/Android Handler机制/">Android Handler机制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在android中提供了一种异步回调机制Handler,使用它，我们可以在完成一个很长时间的任务后做出相应的通知</p>
-<p>handler基本使用：</p>
-<blockquote>
-<p>在主线程中，使用handler很简单，new一个Handler对象实现其handleMessage方法，在handleMessage中提供收到消息后相应的处理方法即可</p>
-</blockquote>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/08/11/Android Handler机制/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/08/11/Android Handler机制/" data-id="zmz8chxolz6grsdt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Handler/">Handler</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android-代码规范" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/14/Android-代码规范/" class="article-date">
-  <time datetime="2015-07-14T01:05:59.000Z" itemprop="datePublished">7月 14 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/14/Android-代码规范/">Android-代码规范</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1_代码格式模板">1 代码格式模板</h2>
-<p>在 Eclipse 的 Preferences 中，选择 Java —&gt; Code Style —&gt; Formatter</p>
-<h2 id="2_严格注释">2 严格注释</h2>
-<h3 id="1-1基本原则">1.1基本原则</h3>
-<blockquote>
-<ul>
-<li>注释应该增加代码的清晰度。代码注释的目的是要使代码更易于被其他开发人员等理解。 </li>
-<li>保持注释的简洁。 </li>
-<li>注释信息不仅要包括代码的功能，还应给出原因。 </li>
-<li>除变量定义等较短语句的注释可用行尾注释外，其他注释当避免使用行尾注释。</li>
-</ul>
-</blockquote>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/07/14/Android-代码规范/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/07/14/Android-代码规范/" data-id="xxtpihzypwxqiqy0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-代码规范/">Android 代码规范</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android-App-Daemon" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/05/20/Android-App-Daemon/" class="article-date">
-  <time datetime="2015-05-20T08:16:48.000Z" itemprop="datePublished">5月 20 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/20/Android-App-Daemon/">Android App Daemon</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>　　关于进程守护，从接触Android没多久就一直想实现，网上给出的方案也是各种各样，有双服务方式，有利用系统定时器方式的等等等等，但我都有过尝试，最终都没有达到自己想要的结果。</p>
-<p>　　后来想到自己以前在搞linux的时候用到子进程来处理一些任务，而Android正是基于linux的，觉得这样的话应该是可行的。最初直接在JNI的c代码中fork出一个子进程出来，然后在子进程中加一个while(1)，再在while中sleep并打开一个指定的service，这样一个最简单的守护完成了。</p>
-<p>　　但是后来测试发现，虽然能实现功能，不过使用adb shell查看进程(命令: ps | grep com.coolerfall….)，发现fork出来的进程的VSIZE(进程虚拟地址空间大小)和RSS(进程正在使用的物理内存的大小)都很大，而且UI线程有时候会出现莫名其妙的问题，于是进程守护也就暂时放下了。<br>　　<br>　　后来由于项目需求，又不得不开始折腾进程守护。一次在看开源项目afwall(android上的流量防火墙)，发现其中的命令是直接使用linux命令行的方式在执行的，这才想起linux可以直接编译一个可执行的二进制文件，然后在命令行中直接执行。看了看Android.mk的文档，加入include $(BUILD_EXECUTABLE)可以让c文件编译成在Android上运行的二进制文件，最后把以前的代码直接拿过来，一切OK了。<br>
-        
-          <p class="article-more-link">
-            <a href="/2015/05/20/Android-App-Daemon/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/05/20/Android-App-Daemon/" data-id="sxyz7okuv8a0dqes" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Daemon/">Daemon</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 </section>
         
           
