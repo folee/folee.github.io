@@ -3,29 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>OnCreate</title>
+  <title>Android 图片和UIL用法概述 | OnCreate</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Android 图片和UIL用法概述
-图片 UIL
-
-Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
-Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
+  <meta name="description" content="Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OnCreate">
+<meta property="og:title" content="Android 图片和UIL用法概述">
 <meta property="og:url" content="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/">
 <meta property="og:site_name" content="OnCreate">
-<meta property="og:description" content="Android 图片和UIL用法概述
-图片 UIL
-
-Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
-Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
+<meta property="og:description" content="Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OnCreate">
-<meta name="twitter:description" content="Android 图片和UIL用法概述
-图片 UIL
-
-Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
-Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPH">
+<meta name="twitter:title" content="Android 图片和UIL用法概述">
+<meta name="twitter:description" content="Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：图片长度，图片宽度，单位像素占用的字节数。一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数
+Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| ————   | :——-  ||Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像">
 
   
     <link rel="alternative" href="/atom.xml" title="OnCreate" type="application/atom+xml">
@@ -80,19 +71,26 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
         <section id="main"><article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
-  <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
+  <time datetime="2015-08-11T07:36:48.000Z" itemprop="datePublished">8月 11 2015</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 图片和UIL用法概述
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android_图片和UIL用法概述">Android 图片和UIL用法概述</h1>
-<p>图片 UIL</p>
-<hr>
-<p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
+        <p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
 <p>Bitmap.Config类是个枚举类型，它可以为以下值<br>|参数|简介|<br>| ————   | :——-  |<br>|Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像素占用一个字节|<br>|Bitmap.Config     ARGB_4444 | 这种格式的图片，看起来质量太差，已经不推荐使用，一个像素占用2个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占4个bites,共16bites,即2个字节|<br>|Bitmap.Config     ARGB_8888 |一个像素占用4个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占8个bites,共32bites,即4个字节,这是一种高质量的图片格式，电脑上普通采用的格式。它也是Android手机上一个BitMap的默认格式|<br>|Bitmap.Config     RGB_565 |一个像素占用2个字节，没有alpha(A)值，即不支持透明和半透明，Red（R）值占5个bites ，Green(G)值占6个bites  ，Blue（B）值占5个bites,共16bites,即2个字节.对于没有透明和半透明颜色的图片来说，该格式的图片能够达到比较的呈现效果，相对于ARGB_8888来说也能减少一半的内存开销。因此它是一个不错的选择。另外我们通过android.content.res.Resources来取得一个张图片时，它也是以该格式来构建BitMap的从Android4.0开始，该选项无效。即使设置为该值，系统任然会采用 ARGB_8888来构造图片|</p>
 <p>ARGB指的是一种色彩模式，里面A代表Alpha，R表示red，G表示green，B表示blue，其实所有的可见色都是红绿蓝组成的，所以红绿蓝又称为三原色。<br>|A　　|R　　|G　　|B|<br>| ————   | :——-  | :——  | :——  |<br>|透明度|　红色|　绿色|　蓝色|<br>简单点说<br> |图片格式（Bitmap.Config）|占用内存的计算方向|一张100<em>100的图片占用内存的大小|<br>| ————   | :——-  | :——:  |<br>|ALPHA_8|图片长度</em>图片宽度|100<em>100=10000字节|<br>|ARGB_4444|图片长度</em>图片宽度<em>2|100</em>100<em>2=20000字节|<br>|ARGB_8888|图片长度</em>图片宽度<em>4|100</em>100<em>4=40000字节|<br>|RGB_565 |图片长度</em>图片宽度<em>2|100</em>100*2=20000字节|</p>
 <p>因此在展示高分辨率图片的时候，最好先将图片进行压缩。压缩后的图片大小应该和用来展示它的控件大小相近，在一个很小的ImageView上显示一张超大的图片不会带来任何视觉上的好处，但却会占用我们相当多宝贵的内存，而且在性能上还可能会带来负面影响。</p>
@@ -195,16 +193,27 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
       <a data-url="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/" data-id="c79y0hloojvxhlfi" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片-UIL/">图片 UIL</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
+    <a href="/2015/08/11/Android相册模块实现/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Android相册模块实现
+        
+      </div>
+    </a>
   
-    <a href="/2015/08/11/Android相册模块实现/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2015/08/11/Android Handler机制/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">Android Handler机制</div>
     </a>
   
 </nav>
@@ -226,11 +235,11 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
       <ul>
         
           <li>
-            <a href="/2015/08/11/Android 图片和UIL用法概述/">(no title)</a>
+            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
           </li>
         
           <li>
-            <a href="/2015/08/11/Android相册模块实现/">(no title)</a>
+            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
           </li>
         
           <li>
@@ -254,7 +263,7 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/Handler/" style="font-size: NaNpx;">Handler</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a>
+      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/Handler/" style="font-size: NaNpx;">Handler</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a><a href="/tags/图片-UIL/" style="font-size: NaNpx;">图片 UIL</a><a href="/tags/未分类/" style="font-size: NaNpx;">未分类</a>
     </div>
   </div>
 

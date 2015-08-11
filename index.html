@@ -67,22 +67,78 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-Android相册模块实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
-  <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
+    <a href="/2015/08/11/Android相册模块实现/" class="article-date">
+  <time datetime="2015-08-11T07:37:00.000Z" itemprop="datePublished">8月 11 2015</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Android_图片和UIL用法概述">Android 图片和UIL用法概述</h1>
-<p>图片 UIL</p>
-<hr>
-<p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
+        <h2 id="使用Loader实现异步动态加载检索本地图片数据">使用Loader实现异步动态加载检索本地图片数据</h2>
+<h3 id="1-Loader特性：">1.Loader特性：</h3>
+<p>(1).对于每个Activity或者Fragment都可用<br>(2).提供异步加载数据<br>(3).监视数据资源，当内容改变时重新更新<br>(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据</p>
+<h3 id="2-Loader相关类接口">2.Loader相关类接口</h3>
+<h4 id="(1)-LoaderManager">(1).LoaderManager</h4>
+<p>对于每个activity或者fragment只存在一个与之相关的LoaderManager对象,该LoaderManager对象可以存在多个可供管理loader对象。</p>
+<h4 id="(2)-LoaderManager-LoaderCallbacks">(2).LoaderManager.LoaderCallbacks</h4>
+<p>LoaderManager.LoaderCallbacks是个回掉接口，用于客户端与LoaderManager的交互，loader对象就是在其接口的onCreateLoader()方法中得到，在使用时需要覆盖其方法。</p>
+<h4 id="(3)-CursorLoader">(3).CursorLoader</h4>
+<p>CursorLoader是AsyncTaskLoader的子类，通过它可以查询ContentResolver并返回一个Cursor对象，并使用该cursor对象在后台线程执行查询操作，以不至于会阻塞主线程，从一个内容提供者去异步加载数据是CursorLoader对象最大用处。</p>
+<p>在使用装载器时，会涉及很多类和接口们，表中对它们总结一下：<br>|Class/Interface   | 说明 |<br>| ————   | ——-:  |<br>|LoaderManager |一个抽像类，关联到一个Activity或Fragment，管理一个或多个装载器的实例。这帮助一个应用管理那些与Activity或Fragment的生命周期相关的长时间运行的的操作。最常见的方式是与一个CursorLoader一起使用，然而应用是可以随便写它们自己的装载器以加载其它类型的数据。每个activity或fragment只有一个LoaderManager。但是一个LoaderManager可以拥有多个装载器。|<br>|LoaderManager.LoaderCallbacks |一个用于客户端与LoaderManager交互的回调接口。例如，你使用回调方法onCreateLoader()来创建一个新的装载器。|<br>|Loader（装载器）|一个执行异步数据加载的抽象类。它是加载器的基类。你可以使用典型的CursorLoader，但是你也可以实现你自己的子类。一旦装载器被激活，它们将监视它们的数据源并且在数据改变时发送新的结果。|<br>|AsyncTaskLoader|提供一个AsyncTask来执行异步加载工作的抽象类。|<br>|CursorLoader|AsyncTaskLoader的子类，它查询ContentResolver然后返回一个Cursor。这个类为查询cursor以标准的方式实现了装载器的协议，它的游标查询是通过AsyncTaskLoader在后台线程中执行，从而不会阻塞界面。使用这个装载器是从一个ContentProvider异步加载数据的最好方式。相比之下，通过fragment或activity的API来执行一个被管理的查询就不行了。|</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://folee.github.io/2015/08/11/Android相册模块实现/" data-id="yr7nz3zkq09wcg7i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/未分类/">未分类</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
+  <time datetime="2015-08-11T07:36:48.000Z" itemprop="datePublished">8月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
 <p>Bitmap.Config类是个枚举类型，它可以为以下值<br>|参数|简介|<br>| ————   | :——-  |<br>|Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像素占用一个字节|<br>|Bitmap.Config     ARGB_4444 | 这种格式的图片，看起来质量太差，已经不推荐使用，一个像素占用2个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占4个bites,共16bites,即2个字节|<br>|Bitmap.Config     ARGB_8888 |一个像素占用4个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占8个bites,共32bites,即4个字节,这是一种高质量的图片格式，电脑上普通采用的格式。它也是Android手机上一个BitMap的默认格式|<br>|Bitmap.Config     RGB_565 |一个像素占用2个字节，没有alpha(A)值，即不支持透明和半透明，Red（R）值占5个bites ，Green(G)值占6个bites  ，Blue（B）值占5个bites,共16bites,即2个字节.对于没有透明和半透明颜色的图片来说，该格式的图片能够达到比较的呈现效果，相对于ARGB_8888来说也能减少一半的内存开销。因此它是一个不错的选择。另外我们通过android.content.res.Resources来取得一个张图片时，它也是以该格式来构建BitMap的从Android4.0开始，该选项无效。即使设置为该值，系统任然会采用 ARGB_8888来构造图片|</p>
 <p>ARGB指的是一种色彩模式，里面A代表Alpha，R表示red，G表示green，B表示blue，其实所有的可见色都是红绿蓝组成的，所以红绿蓝又称为三原色。<br>|A　　|R　　|G　　|B|<br>| ————   | :——-  | :——  | :——  |<br>|透明度|　红色|　绿色|　蓝色|<br>简单点说<br> |图片格式（Bitmap.Config）|占用内存的计算方向|一张100<em>100的图片占用内存的大小|<br>| ————   | :——-  | :——:  |<br>|ALPHA_8|图片长度</em>图片宽度|100<em>100=10000字节|<br>|ARGB_4444|图片长度</em>图片宽度<em>2|100</em>100<em>2=20000字节|<br>|ARGB_8888|图片长度</em>图片宽度<em>4|100</em>100<em>4=40000字节|<br>|RGB_565 |图片长度</em>图片宽度<em>2|100</em>100*2=20000字节|</p>
 <p>因此在展示高分辨率图片的时候，最好先将图片进行压缩。压缩后的图片大小应该和用来展示它的控件大小相近，在一个很小的ImageView上显示一张超大的图片不会带来任何视觉上的好处，但却会占用我们相当多宝贵的内存，而且在性能上还可能会带来负面影响。</p>
@@ -185,46 +241,8 @@
       <a data-url="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/" data-id="c79y0hloojvxhlfi" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片-UIL/">图片 UIL</a></li></ul>
 
-
-  
-    <article id="post-Android相册模块实现" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/Android相册模块实现/" class="article-date">
-  <time datetime="2015-08-11T07:35:06.000Z" itemprop="datePublished">8月 11 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Android相册模块实现">Android相册模块实现</h1>
-<p>标签（空格分隔）： 未分类</p>
-<hr>
-<h2 id="使用Loader实现异步动态加载检索本地图片数据">使用Loader实现异步动态加载检索本地图片数据</h2>
-<h3 id="1-Loader特性：">1.Loader特性：</h3>
-<p>(1).对于每个Activity或者Fragment都可用<br>(2).提供异步加载数据<br>(3).监视数据资源，当内容改变时重新更新<br>(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据</p>
-<h3 id="2-Loader相关类接口">2.Loader相关类接口</h3>
-<h4 id="(1)-LoaderManager">(1).LoaderManager</h4>
-<p>对于每个activity或者fragment只存在一个与之相关的LoaderManager对象,该LoaderManager对象可以存在多个可供管理loader对象。</p>
-<h4 id="(2)-LoaderManager-LoaderCallbacks">(2).LoaderManager.LoaderCallbacks</h4>
-<p>LoaderManager.LoaderCallbacks是个回掉接口，用于客户端与LoaderManager的交互，loader对象就是在其接口的onCreateLoader()方法中得到，在使用时需要覆盖其方法。</p>
-<h4 id="(3)-CursorLoader">(3).CursorLoader</h4>
-<p>CursorLoader是AsyncTaskLoader的子类，通过它可以查询ContentResolver并返回一个Cursor对象，并使用该cursor对象在后台线程执行查询操作，以不至于会阻塞主线程，从一个内容提供者去异步加载数据是CursorLoader对象最大用处。</p>
-<p>在使用装载器时，会涉及很多类和接口们，表中对它们总结一下：<br>|Class/Interface   | 说明 |<br>| ————   | ——-:  |<br>|LoaderManager |一个抽像类，关联到一个Activity或Fragment，管理一个或多个装载器的实例。这帮助一个应用管理那些与Activity或Fragment的生命周期相关的长时间运行的的操作。最常见的方式是与一个CursorLoader一起使用，然而应用是可以随便写它们自己的装载器以加载其它类型的数据。每个activity或fragment只有一个LoaderManager。但是一个LoaderManager可以拥有多个装载器。|<br>|LoaderManager.LoaderCallbacks |一个用于客户端与LoaderManager交互的回调接口。例如，你使用回调方法onCreateLoader()来创建一个新的装载器。|<br>|Loader（装载器）|一个执行异步数据加载的抽象类。它是加载器的基类。你可以使用典型的CursorLoader，但是你也可以实现你自己的子类。一旦装载器被激活，它们将监视它们的数据源并且在数据改变时发送新的结果。|<br>|AsyncTaskLoader|提供一个AsyncTask来执行异步加载工作的抽象类。|<br>|CursorLoader|AsyncTaskLoader的子类，它查询ContentResolver然后返回一个Cursor。这个类为查询cursor以标准的方式实现了装载器的协议，它的游标查询是通过AsyncTaskLoader在后台线程中执行，从而不会阻塞界面。使用这个装载器是从一个ContentProvider异步加载数据的最好方式。相比之下，通过fragment或activity的API来执行一个被管理的查询就不行了。|</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/08/11/Android相册模块实现/" data-id="yr7nz3zkq09wcg7i" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -399,11 +417,11 @@
       <ul>
         
           <li>
-            <a href="/2015/08/11/Android 图片和UIL用法概述/">(no title)</a>
+            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
           </li>
         
           <li>
-            <a href="/2015/08/11/Android相册模块实现/">(no title)</a>
+            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
           </li>
         
           <li>
@@ -427,7 +445,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/Handler/" style="font-size: NaNpx;">Handler</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a>
+      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/Handler/" style="font-size: NaNpx;">Handler</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a><a href="/tags/图片-UIL/" style="font-size: NaNpx;">图片 UIL</a><a href="/tags/未分类/" style="font-size: NaNpx;">未分类</a>
     </div>
   </div>
 
