@@ -71,7 +71,7 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
         <section id="main"><article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
-  <time datetime="2015-08-11T07:36:48.000Z" itemprop="datePublished">8月 11 2015</time>
+  <time datetime="2015-08-11T07:38:39.000Z" itemprop="datePublished">8月 11 2015</time>
 </a>
     
   </div>
@@ -92,6 +92,7 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
       
         <p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
 <p>Bitmap.Config类是个枚举类型，它可以为以下值<br>|参数|简介|<br>| ————   | :——-  |<br>|Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像素占用一个字节|<br>|Bitmap.Config     ARGB_4444 | 这种格式的图片，看起来质量太差，已经不推荐使用，一个像素占用2个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占4个bites,共16bites,即2个字节|<br>|Bitmap.Config     ARGB_8888 |一个像素占用4个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占8个bites,共32bites,即4个字节,这是一种高质量的图片格式，电脑上普通采用的格式。它也是Android手机上一个BitMap的默认格式|<br>|Bitmap.Config     RGB_565 |一个像素占用2个字节，没有alpha(A)值，即不支持透明和半透明，Red（R）值占5个bites ，Green(G)值占6个bites  ，Blue（B）值占5个bites,共16bites,即2个字节.对于没有透明和半透明颜色的图片来说，该格式的图片能够达到比较的呈现效果，相对于ARGB_8888来说也能减少一半的内存开销。因此它是一个不错的选择。另外我们通过android.content.res.Resources来取得一个张图片时，它也是以该格式来构建BitMap的从Android4.0开始，该选项无效。即使设置为该值，系统任然会采用 ARGB_8888来构造图片|</p>
+<a id="more"></a>
 <p>ARGB指的是一种色彩模式，里面A代表Alpha，R表示red，G表示green，B表示blue，其实所有的可见色都是红绿蓝组成的，所以红绿蓝又称为三原色。<br>|A　　|R　　|G　　|B|<br>| ————   | :——-  | :——  | :——  |<br>|透明度|　红色|　绿色|　蓝色|<br>简单点说<br> |图片格式（Bitmap.Config）|占用内存的计算方向|一张100<em>100的图片占用内存的大小|<br>| ————   | :——-  | :——:  |<br>|ALPHA_8|图片长度</em>图片宽度|100<em>100=10000字节|<br>|ARGB_4444|图片长度</em>图片宽度<em>2|100</em>100<em>2=20000字节|<br>|ARGB_8888|图片长度</em>图片宽度<em>4|100</em>100<em>4=40000字节|<br>|RGB_565 |图片长度</em>图片宽度<em>2|100</em>100*2=20000字节|</p>
 <p>因此在展示高分辨率图片的时候，最好先将图片进行压缩。压缩后的图片大小应该和用来展示它的控件大小相近，在一个很小的ImageView上显示一张超大的图片不会带来任何视觉上的好处，但却会占用我们相当多宝贵的内存，而且在性能上还可能会带来负面影响。</p>
 <p>BitmapFactory这个类提供了多个解析方法(decodeByteArray, decodeFile, decodeStream,decodeResource等)用于创建Bitmap对象，我们应该根据图片的来源选择合适的方法。这些方法会尝试为已经构建的bitmap分配内存，这时就会很容易导致OOM出现。为此每一种解析方法都提供了一个可选的BitmapFactory.Options参数，将这个参数的inJustDecodeBounds属性设置为true就可以让解析方法禁止为bitmap分配内存，返回值也不再是一个Bitmap对象，而是null。虽然Bitmap是null了，但是BitmapFactory.Options的outWidth、outHeight和outMimeType属性都会被赋值。这个技巧让我们可以在加载图片之前就获取到图片的长宽值和MIME类型，从而根据情况对图片进行压缩。如下代码所示：</p>
@@ -201,19 +202,10 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
     
 <nav id="article-nav">
   
-    <a href="/2015/08/11/Android相册模块实现/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Android相册模块实现
-        
-      </div>
-    </a>
   
-  
-    <a href="/2015/08/11/Android Handler机制/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/08/11/Android相册模块实现/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Android Handler机制</div>
+      <div class="article-nav-title">Android相册模块实现</div>
     </a>
   
 </nav>
@@ -235,11 +227,11 @@ Bitmap.Config类是个枚举类型，它可以为以下值|参数|简介|| —�
       <ul>
         
           <li>
-            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
+            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
           </li>
         
           <li>
-            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
+            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
           </li>
         
           <li>

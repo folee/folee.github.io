@@ -67,10 +67,55 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
+  <time datetime="2015-08-11T07:38:39.000Z" itemprop="datePublished">8月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
+<p>Bitmap.Config类是个枚举类型，它可以为以下值<br>|参数|简介|<br>| ————   | :——-  |<br>|Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像素占用一个字节|<br>|Bitmap.Config     ARGB_4444 | 这种格式的图片，看起来质量太差，已经不推荐使用，一个像素占用2个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占4个bites,共16bites,即2个字节|<br>|Bitmap.Config     ARGB_8888 |一个像素占用4个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占8个bites,共32bites,即4个字节,这是一种高质量的图片格式，电脑上普通采用的格式。它也是Android手机上一个BitMap的默认格式|<br>|Bitmap.Config     RGB_565 |一个像素占用2个字节，没有alpha(A)值，即不支持透明和半透明，Red（R）值占5个bites ，Green(G)值占6个bites  ，Blue（B）值占5个bites,共16bites,即2个字节.对于没有透明和半透明颜色的图片来说，该格式的图片能够达到比较的呈现效果，相对于ARGB_8888来说也能减少一半的内存开销。因此它是一个不错的选择。另外我们通过android.content.res.Resources来取得一个张图片时，它也是以该格式来构建BitMap的从Android4.0开始，该选项无效。即使设置为该值，系统任然会采用 ARGB_8888来构造图片|</p>
+
+        
+          <p class="article-more-link">
+            <a href="/2015/08/11/Android 图片和UIL用法概述/#more">More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/" data-id="c79y0hloojvxhlfi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片-UIL/">图片 UIL</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android相册模块实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/08/11/Android相册模块实现/" class="article-date">
-  <time datetime="2015-08-11T07:37:00.000Z" itemprop="datePublished">8月 11 2015</time>
+  <time datetime="2015-08-11T07:38:32.000Z" itemprop="datePublished">8月 11 2015</time>
 </a>
     
   </div>
@@ -92,15 +137,12 @@
         <h2 id="使用Loader实现异步动态加载检索本地图片数据">使用Loader实现异步动态加载检索本地图片数据</h2>
 <h3 id="1-Loader特性：">1.Loader特性：</h3>
 <p>(1).对于每个Activity或者Fragment都可用<br>(2).提供异步加载数据<br>(3).监视数据资源，当内容改变时重新更新<br>(4).当配置改变时，自动重新连接最新的cursor，故不需要重新查询数据</p>
-<h3 id="2-Loader相关类接口">2.Loader相关类接口</h3>
-<h4 id="(1)-LoaderManager">(1).LoaderManager</h4>
-<p>对于每个activity或者fragment只存在一个与之相关的LoaderManager对象,该LoaderManager对象可以存在多个可供管理loader对象。</p>
-<h4 id="(2)-LoaderManager-LoaderCallbacks">(2).LoaderManager.LoaderCallbacks</h4>
-<p>LoaderManager.LoaderCallbacks是个回掉接口，用于客户端与LoaderManager的交互，loader对象就是在其接口的onCreateLoader()方法中得到，在使用时需要覆盖其方法。</p>
-<h4 id="(3)-CursorLoader">(3).CursorLoader</h4>
-<p>CursorLoader是AsyncTaskLoader的子类，通过它可以查询ContentResolver并返回一个Cursor对象，并使用该cursor对象在后台线程执行查询操作，以不至于会阻塞主线程，从一个内容提供者去异步加载数据是CursorLoader对象最大用处。</p>
-<p>在使用装载器时，会涉及很多类和接口们，表中对它们总结一下：<br>|Class/Interface   | 说明 |<br>| ————   | ——-:  |<br>|LoaderManager |一个抽像类，关联到一个Activity或Fragment，管理一个或多个装载器的实例。这帮助一个应用管理那些与Activity或Fragment的生命周期相关的长时间运行的的操作。最常见的方式是与一个CursorLoader一起使用，然而应用是可以随便写它们自己的装载器以加载其它类型的数据。每个activity或fragment只有一个LoaderManager。但是一个LoaderManager可以拥有多个装载器。|<br>|LoaderManager.LoaderCallbacks |一个用于客户端与LoaderManager交互的回调接口。例如，你使用回调方法onCreateLoader()来创建一个新的装载器。|<br>|Loader（装载器）|一个执行异步数据加载的抽象类。它是加载器的基类。你可以使用典型的CursorLoader，但是你也可以实现你自己的子类。一旦装载器被激活，它们将监视它们的数据源并且在数据改变时发送新的结果。|<br>|AsyncTaskLoader|提供一个AsyncTask来执行异步加载工作的抽象类。|<br>|CursorLoader|AsyncTaskLoader的子类，它查询ContentResolver然后返回一个Cursor。这个类为查询cursor以标准的方式实现了装载器的协议，它的游标查询是通过AsyncTaskLoader在后台线程中执行，从而不会阻塞界面。使用这个装载器是从一个ContentProvider异步加载数据的最好方式。相比之下，通过fragment或activity的API来执行一个被管理的查询就不行了。|</p>
 
+        
+          <p class="article-more-link">
+            <a href="/2015/08/11/Android相册模块实现/#more">More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -108,140 +150,6 @@
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/未分类/">未分类</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android 图片和UIL用法概述" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/08/11/Android 图片和UIL用法概述/" class="article-date">
-  <time datetime="2015-08-11T07:36:48.000Z" itemprop="datePublished">8月 11 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android中一张图片（BitMap）占用的内存主要和以下几个因数有关：<strong>图片长度</strong>，<strong>图片宽度</strong>，<strong>单位像素占用的字节数</strong>。<br><code>一张图片（BitMap）占用的内存=图片长度*图片宽度*单位像素占用的字节数</code></p>
-<p>Bitmap.Config类是个枚举类型，它可以为以下值<br>|参数|简介|<br>| ————   | :——-  |<br>|Bitmap.Config     ALPHA_8|此时图片只有alpha值，没有RGB值，一个像素占用一个字节|<br>|Bitmap.Config     ARGB_4444 | 这种格式的图片，看起来质量太差，已经不推荐使用，一个像素占用2个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占4个bites,共16bites,即2个字节|<br>|Bitmap.Config     ARGB_8888 |一个像素占用4个字节，alpha(A)值，Red（R）值，Green(G)值，Blue（B）值各占8个bites,共32bites,即4个字节,这是一种高质量的图片格式，电脑上普通采用的格式。它也是Android手机上一个BitMap的默认格式|<br>|Bitmap.Config     RGB_565 |一个像素占用2个字节，没有alpha(A)值，即不支持透明和半透明，Red（R）值占5个bites ，Green(G)值占6个bites  ，Blue（B）值占5个bites,共16bites,即2个字节.对于没有透明和半透明颜色的图片来说，该格式的图片能够达到比较的呈现效果，相对于ARGB_8888来说也能减少一半的内存开销。因此它是一个不错的选择。另外我们通过android.content.res.Resources来取得一个张图片时，它也是以该格式来构建BitMap的从Android4.0开始，该选项无效。即使设置为该值，系统任然会采用 ARGB_8888来构造图片|</p>
-<p>ARGB指的是一种色彩模式，里面A代表Alpha，R表示red，G表示green，B表示blue，其实所有的可见色都是红绿蓝组成的，所以红绿蓝又称为三原色。<br>|A　　|R　　|G　　|B|<br>| ————   | :——-  | :——  | :——  |<br>|透明度|　红色|　绿色|　蓝色|<br>简单点说<br> |图片格式（Bitmap.Config）|占用内存的计算方向|一张100<em>100的图片占用内存的大小|<br>| ————   | :——-  | :——:  |<br>|ALPHA_8|图片长度</em>图片宽度|100<em>100=10000字节|<br>|ARGB_4444|图片长度</em>图片宽度<em>2|100</em>100<em>2=20000字节|<br>|ARGB_8888|图片长度</em>图片宽度<em>4|100</em>100<em>4=40000字节|<br>|RGB_565 |图片长度</em>图片宽度<em>2|100</em>100*2=20000字节|</p>
-<p>因此在展示高分辨率图片的时候，最好先将图片进行压缩。压缩后的图片大小应该和用来展示它的控件大小相近，在一个很小的ImageView上显示一张超大的图片不会带来任何视觉上的好处，但却会占用我们相当多宝贵的内存，而且在性能上还可能会带来负面影响。</p>
-<p>BitmapFactory这个类提供了多个解析方法(decodeByteArray, decodeFile, decodeStream,decodeResource等)用于创建Bitmap对象，我们应该根据图片的来源选择合适的方法。这些方法会尝试为已经构建的bitmap分配内存，这时就会很容易导致OOM出现。为此每一种解析方法都提供了一个可选的BitmapFactory.Options参数，将这个参数的inJustDecodeBounds属性设置为true就可以让解析方法禁止为bitmap分配内存，返回值也不再是一个Bitmap对象，而是null。虽然Bitmap是null了，但是BitmapFactory.Options的outWidth、outHeight和outMimeType属性都会被赋值。这个技巧让我们可以在加载图片之前就获取到图片的长宽值和MIME类型，从而根据情况对图片进行压缩。如下代码所示：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">BitmapFactory.<span class="keyword">Options</span> <span class="keyword">options</span> = <span class="keyword">new</span> BitmapFactory.<span class="keyword">Options</span>();  </div><div class="line"><span class="keyword">options</span>.inJustDecodeBounds = <span class="keyword">true</span>;  </div><div class="line">BitmapFactory.decodeResource(getResources(), R.id.myimage, <span class="keyword">options</span>);  </div><div class="line"><span class="keyword">int</span> imageHeight = <span class="keyword">options</span>.outHeight;  </div><div class="line"><span class="keyword">int</span> imageWidth = <span class="keyword">options</span>.outWidth;  </div><div class="line">String imageType = <span class="keyword">options</span>.outMimeType;</div></pre></td></tr></table></figure>
-
-<p>为了避免OOM异常，最好在解析每张图片的时候都先检查一下图片的大小，除非你非常信任图片的来源，保证这些图片都不会超出你程序的可用内存,以下几个因素是我们需要考虑的：</p>
-<blockquote>
-<ul>
-<li>预估一下加载整张图片所需占用的内存。</li>
-<li>为了加载这一张图片你所愿意提供多少内存。</li>
-<li>用于展示这张图片的控件的实际大小。</li>
-<li>当前设备的屏幕尺寸和分辨率。</li>
-</ul>
-</blockquote>
-<pre><code>比如，你的ImageView只有128<span class="keyword">*</span>96像素的大小，只是为了显示一张缩略图，这时候把一张1024<span class="keyword">*</span>768像素的图片完全加载到内存中显然是不值得的。
-</code></pre><p>就需要对图片进行压缩，通过设置BitmapFactory.Options中inSampleSize的值就可以实现：</p>
-<pre><code>比如我们有一张2048<span class="keyword">*</span>1536像素的图片，将inSampleSize的值设置为4，就可以把这张图片压缩成512<span class="keyword">*</span>384像素。原本加载这张图片需要占用13M的内存，压缩后就只需要占用0.75M了(假设图片是ARGB_8888类型，即每个像素点占用4个字节)
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculateInSampleSize</span>(BitmapFactory.Options options,  </div><div class="line">        <span class="keyword">int</span> reqWidth, <span class="keyword">int</span> reqHeight) {  </div><div class="line">    <span class="comment">// 源图片的高度和宽度  </span></div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> height = options.outHeight;  </div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> width = options.outWidth;  </div><div class="line">    <span class="keyword">int</span> inSampleSize = <span class="number">1</span>;  </div><div class="line">    <span class="keyword">if</span> (height &gt; reqHeight || width &gt; reqWidth) {  </div><div class="line">        <span class="comment">// 计算出实际宽高和目标宽高的比率  </span></div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> heightRatio = Math.round((<span class="keyword">float</span>) height / (<span class="keyword">float</span>) reqHeight);  </div><div class="line">        <span class="keyword">final</span> <span class="keyword">int</span> widthRatio = Math.round((<span class="keyword">float</span>) width / (<span class="keyword">float</span>) reqWidth);  </div><div class="line">        <span class="comment">// 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高  </span></div><div class="line">        <span class="comment">// 一定都会大于等于目标的宽和高。  </span></div><div class="line">        inSampleSize = heightRatio &lt; widthRatio ? heightRatio : widthRatio;  </div><div class="line">    }  </div><div class="line">    <span class="keyword">return</span> inSampleSize;  </div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>使用这个方法，首先你要将BitmapFactory.Options的inJustDecodeBounds属性设置为true，解析一次图片。然后将BitmapFactory.Options连同期望的宽度和高度一起传递到到calculateInSampleSize方法中，就可以得到合适的inSampleSize值了。之后再解析一次图片，使用新获取到的inSampleSize值，并把inJustDecodeBounds设置为false，就可以得到压缩后的图片了。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> Bitmap decodeSampledBitmapFromResource(Resources res, <span class="keyword">int</span> resId,  </div><div class="line">        <span class="keyword">int</span> reqWidth, <span class="keyword">int</span> reqHeight) {  </div><div class="line">    <span class="comment">// 第一次解析将inJustDecodeBounds设置为true，来获取图片大小  </span></div><div class="line">    <span class="keyword">final</span> BitmapFactory.<span class="keyword">Options</span> <span class="keyword">options</span> = <span class="keyword">new</span> BitmapFactory.<span class="keyword">Options</span>();  </div><div class="line">    <span class="keyword">options</span>.inJustDecodeBounds = <span class="keyword">true</span>;  </div><div class="line">    BitmapFactory.decodeResource(res, resId, <span class="keyword">options</span>);  </div><div class="line">    <span class="comment">// 调用上面定义的方法计算inSampleSize值  </span></div><div class="line">    <span class="keyword">options</span>.inSampleSize = calculateInSampleSize(<span class="keyword">options</span>, reqWidth, reqHeight);  </div><div class="line">    <span class="comment">// 使用获取到的inSampleSize值再次解析图片  </span></div><div class="line">    <span class="keyword">options</span>.inJustDecodeBounds = <span class="keyword">false</span>;  </div><div class="line">    <span class="keyword">return</span> BitmapFactory.decodeResource(res, resId, <span class="keyword">options</span>);  </div><div class="line">}</div></pre></td></tr></table></figure>
-
-<p>下面的代码非常简单地将任意一张图片压缩成100*100的缩略图，并在ImageView上展示。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mImageView<span class="class">.setImageBitmap</span>(<span class="function">decodeSampledBitmapFromResource</span>(<span class="function">getResources</span>(), R<span class="class">.id</span><span class="class">.myimage</span>, 100, 100));</div></pre></td></tr></table></figure>
-
-<h2 id="Android_Universal_Image_Loader">Android Universal Image Loader</h2>
-<blockquote>
-<ul>
-<li>可配置度高。支持任务线程池、下载器、解码器、内存及磁盘缓存、显示选项等等的配置。</li>
-<li>包含内存缓存和磁盘缓存两级缓存。</li>
-<li>支持多线程，支持异步和同步加载，图片可以来源于网络，文件系统，项目文件夹assets中以及drawable中等。</li>
-<li>支持多种缓存算法、下载进度监听、ListView 图片错乱解决等。</li>
-<li>支持图片下载过程的监听</li>
-<li>根据控件(ImageView)的大小对Bitmap进行裁剪，减少Bitmap占用过多的内存</li>
-<li>较好的控制图片的加载过程，例如暂停图片加载，重新开始加载图片，一般使用在ListView,GridView中，滑动过程中暂停加载图片，停止滑动的时候去加载图片</li>
-<li>提供在较慢的网络下对图片进行加载</li>
-</ul>
-</blockquote>
-<h2 id="1、根据图片来源设置不同的Scheme">1、根据图片来源设置不同的Scheme</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Scheme {</div><div class="line">   HTTP(<span class="string">"http"</span>), HTTPS(<span class="string">"https"</span>), FILE(<span class="string">"file"</span>), CONTENT(<span class="string">"content"</span>), ASSETS(<span class="string">"assets"</span>), DRAWABLE(<span class="string">"drawable"</span>), UNKNOWN(<span class="string">""</span>);</div><div class="line"></div><div class="line"><span class="built_in">String</span> imageUrl = <span class="string">"http://site.com/image.png"</span>; <span class="comment">// from Web  </span></div><div class="line"><span class="built_in">String</span> imageUrl = <span class="string">"file:///mnt/sdcard/image.png"</span>; <span class="comment">// from SD card  </span></div><div class="line"><span class="built_in">String</span> imageUrl = <span class="string">"content://media/external/audio/albumart/13"</span>; <span class="comment">// from content provider  </span></div><div class="line"><span class="built_in">String</span> imageUrl = <span class="string">"assets://image.png"</span>; <span class="comment">// from assets  </span></div><div class="line"><span class="built_in">String</span> imageUrl = <span class="string">"drawable://"</span> + R.drawable.image; <span class="comment">// from drawables (only images, non-9patch)</span></div></pre></td></tr></table></figure>
-
-<h2 id="2、图片显示参数设置">2、图片显示参数设置</h2>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">DisplayImageOptions <span class="keyword">options</span>;  </div><div class="line"><span class="keyword">options</span> = <span class="keyword">new</span> DisplayImageOptions.Builder()  </div><div class="line"> .showImageOnLoading(R.drawable.ic_launcher) <span class="comment">//设置图片在下载期间显示的图片  </span></div><div class="line"> .showImageForEmptyUri(R.drawable.ic_launcher)<span class="comment">//设置图片Uri为空或是错误的时候显示的图片  </span></div><div class="line">.showImageOnFail(R.drawable.ic_launcher)  <span class="comment">//设置图片加载/解码过程中错误时候显示的图片</span></div><div class="line">.cacheInMemory(<span class="keyword">true</span>)<span class="comment">//设置下载的图片是否缓存在内存中  </span></div><div class="line">.cacheOnDisc(<span class="keyword">true</span>)<span class="comment">//设置下载的图片是否缓存在SD卡中  </span></div><div class="line">.considerExifParams(<span class="keyword">true</span>)  <span class="comment">//是否考虑JPEG图像EXIF参数（旋转，翻转）</span></div><div class="line">.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)<span class="comment">//设置图片以如何的编码方式显示  </span></div><div class="line">.bitmapConfig(Bitmap.Config.RGB_565)<span class="comment">//设置图片的解码类型</span></div><div class="line">.decodingOptions(android.graphics.BitmapFactory.<span class="keyword">Options</span> decodingOptions)<span class="comment">//设置图片的解码配置  </span></div><div class="line"><span class="comment">//.delayBeforeLoading(int delayInMillis)//int delayInMillis为你设置的下载前的延迟时间 //设置图片加入缓存前，对bitmap进行设置  </span></div><div class="line"><span class="comment">//.preProcessor(BitmapProcessor preProcessor)  </span></div><div class="line">.resetViewBeforeLoading(<span class="keyword">true</span>)<span class="comment">//设置图片在下载前是否重置，复位  </span></div><div class="line">.displayer(<span class="keyword">new</span> RoundedBitmapDisplayer(<span class="number">20</span>))<span class="comment">//是否设置为圆角，弧度为多少  </span></div><div class="line">.displayer(<span class="keyword">new</span> FadeInBitmapDisplayer(<span class="number">100</span>))<span class="comment">//是否图片加载好后渐入的动画时间  </span></div><div class="line">.build();</div></pre></td></tr></table></figure>
-
-<p> 以上配置中的：<br> 1）.imageScaleType(ImageScaleType imageScaleType)  是设置 图片的缩放方式<br>     缩放类型mageScaleType:</p>
-<pre><code>          EXACTLY :图像将完全按比例缩小的目标大小
-
-          EXACTLY_STRETCHED:图片会缩放到目标大小完全
-
-          IN_SAMPLE_INT:图像将被二次采样的整数倍
-
-          IN_SAMPLE_POWER_OF_2:图片将降低<span class="number">2</span>倍，直到下一减少步骤，使图像更小的目标大小
-
-          <span class="constant">NONE</span>:图片不会调整
-</code></pre><p>  2）.displayer(BitmapDisplayer displayer)   是设置 图片的显示方式</p>
-<pre><code>  显示方式displayer：
-
-          RoundedBitmapDisplayer（<span class="keyword">int</span> roundPixels）设置圆角图片
-
-          FakeBitmapDisplayer（）这个类什么都没做
-
-          FadeInBitmapDisplayer（<span class="keyword">int</span> durationMillis）设置图片渐显的时间
-          SimpleBitmapDisplayer()正常显示一张图片
-</code></pre><h2 id="3、之后按照需求调用">3、之后按照需求调用</h2>
-<h4 id="1)加载默认配置的图片">1)加载默认配置的图片</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImageLoader.getInstance().displayImage(imageUrl, imageView); <span class="comment">// imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件</span></div></pre></td></tr></table></figure>
-
-<h4 id="2)加载自定义配置的图片">2)加载自定义配置的图片</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ImageLoader.getInstance().displayImage(imageUrl, imageView，<span class="keyword">options</span>); // imageUrl代表图片的URL地址，imageView代表承载图片的IMAGEVIEW控件 ， <span class="keyword">options</span>代表DisplayImageOptions配置文件</div></pre></td></tr></table></figure>
-
-<h4 id="3)_图片加载时候带加载情况的监听">3) 图片加载时候带加载情况的监听</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">imageLoader.displayImage(imageUrl, imageView, options, <span class="keyword">new</span> ImageLoadingListener() {  </div><div class="line">    <span class="annotation">@Override</span>  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingStarted</span>() {  </div><div class="line">       <span class="comment">//开始加载的时候执行  </span></div><div class="line">    }  </div><div class="line">    <span class="annotation">@Override</span>  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingFailed</span>(FailReason failReason) {        </div><div class="line">       <span class="comment">//加载失败的时候执行  </span></div><div class="line">    }   </div><div class="line">    <span class="annotation">@Override</span>   </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingComplete</span>(Bitmap loadedImage) {  </div><div class="line">       <span class="comment">//加载成功的时候执行  </span></div><div class="line">    }   </div><div class="line">    <span class="annotation">@Override</span>   </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingCancelled</span>() {  </div><div class="line">       <span class="comment">//加载取消的时候执行  </span></div><div class="line">  </div><div class="line">    }});</div></pre></td></tr></table></figure>
-
-<pre><code><span class="title">ImageLoadingListener</span> 用于监听图片的下载情况。
-</code></pre><h4 id="4)_图片加载时候，带监听又带加载进度条">4) 图片加载时候，带监听又带加载进度条</h4>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">imageLoader.displayImage(imageUrl, imageView, options, <span class="keyword">new</span> ImageLoadingListener() {  </div><div class="line">    <span class="annotation">@Override</span>  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingStarted</span>() {  </div><div class="line">       <span class="comment">//开始加载的时候执行  </span></div><div class="line">    }  </div><div class="line">    <span class="annotation">@Override</span>  </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingFailed</span>(FailReason failReason) {        </div><div class="line">       <span class="comment">//加载失败的时候执行  </span></div><div class="line">    }      </div><div class="line">    <span class="annotation">@Override</span>      </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingComplete</span>(Bitmap loadedImage) {  </div><div class="line">       <span class="comment">//加载成功的时候执行  </span></div><div class="line">    }      </div><div class="line">    <span class="annotation">@Override</span>      </div><div class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onLoadingCancelled</span>() {  </div><div class="line">       <span class="comment">//加载取消的时候执行  </span></div><div class="line">    },<span class="keyword">new</span> ImageLoadingProgressListener() {        </div><div class="line">      <span class="annotation">@Override</span>  </div><div class="line">      <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span>(String imageUri, View view, <span class="keyword">int</span> current,<span class="keyword">int</span> total) {     </div><div class="line">      <span class="comment">//在这里更新 ProgressBar的进度信息  </span></div><div class="line">      }  </div><div class="line">    });</div></pre></td></tr></table></figure>
-
-<h2 id="4、注意事项">4、注意事项</h2>
-<blockquote>
-<ul>
-<li>1.上述提到的2个权限必须加入，否则会出错</li>
-<li>2.ImageLoaderConfiguration必须配置并且全局化的初始化这个配置ImageLoader.getInstance().init(config);  否则也会出现错误提示</li>
-<li>3.ImageLoader是根据ImageView的height，width确定图片的宽高。</li>
-<li>4.如果经常出现OOM（别人那边看到的，觉得很有提的必要）<br>①减少配置之中线程池的大小，(.threadPoolSize).推荐1-5；<br>②使用.bitmapConfig(Bitmap.config.RGB_565)代替ARGB_8888;<br>③使用.imageScaleType(ImageScaleType.IN_SAMPLE_INT)或者        try.imageScaleType(ImageScaleType.EXACTLY)；<br>④避免使用RoundedBitmapDisplayer.他会创建新的ARGB_8888格式的Bitmap对象；<br>⑤使用.memoryCache(new WeakMemoryCache())，不要使用.cacheInMemory();</li>
-</ul>
-</blockquote>
-<h2 id="5、Android-Universal-Image-Loader源码分析">5、<a href="http://www.codekk.com/open-source-project-analysis/detail/Android/huxian99/Android%20Universal%20Image%20Loader%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90" target="_blank" rel="external">Android-Universal-Image-Loader源码分析</a></h2>
-<h2 id="6、其他类似的图片加载开源项目">6、其他类似的图片加载开源项目</h2>
-<h3 id="fresco">fresco</h3>
-<p>一款强大的图片缓存工具，由 Facebook开发<br>项目地址：<a href="https://github.com/facebook/fresco" target="_blank" rel="external">https://github.com/facebook/fresco</a><br>文档介绍：<a href="http://frescolib.org/" target="_blank" rel="external">http://frescolib.org/</a><br>特点：(1) 两个内存缓存加上磁盘缓存构成了三级缓存<br>(2) 支持流式，可以类似网页上模糊渐进式显示图片<br>(3) 对多帧动画图片支持更好，如 Gif、WebP<br>(4) 更多样的显示，如圆角、进度条、点击重试、自定义对焦点<br>(5) 更多样的加载，如支持 EXIF、全面支持 WebP<br>(6) 支持 Android 2.3+</p>
-<h2 id="Glide_Glide">Glide Glide</h2>
-<p>是一个android平台上的快速和高效的开源的多媒体资源管理库,提供 多媒体文件的压缩,内存和磁盘缓存, 资源池的接口。<br>它可以最大性能地在Android设备上读取、解码、显示图片和视频。Glide可以将远程的图片、视频、动画图片等缓存在设备本地便于提高用户浏览图片的流畅体验。<br>项目地址：<a href="https://github.com/bumptech/glide" target="_blank" rel="external">https://github.com/bumptech/glide</a><br>特点：(1) GIF动画的解码<br>(2) 本地视频剧照的解码<br>(3) 支持缩略图<br>(4) Activity生命周期的集成<br>(5) 转码的支持<br>(6) 动画的支持<br>(7) OkHttp和Volley的支持</p>
-<h2 id="ImageCache">ImageCache</h2>
-<p>图片缓存，包含内存和Sdcard缓存<br>项目地址：<a href="https://github.com/Trinea/AndroidCommon" target="_blank" rel="external">https://github.com/Trinea/AndroidCommon</a><br>Demo地址：<a href="https://play.google.com/store/apps/details?id=cn.trinea.android.demo" target="_blank" rel="external">https://play.google.com/store/apps/details?id=cn.trinea.android.demo</a><br>文档介绍：<a href="http://www.trinea.cn/android/android-imagecache/" target="_blank" rel="external">http://www.trinea.cn/android/android-imagecache/</a><br>特点：(1)支持预取新图片，支持等待队列<br>(2)包含二级缓存，可自定义文件名保存规则<br>(3)可选择多种缓存算法(FIFO、LIFO、LRU、MRU、LFU、MFU等13种)或自定义缓存算法<br>(4)可方便的保存及初始化恢复数据<br>(5)支持不同类型网络处理<br>(6)可根据系统配置初始化缓存等</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/08/11/Android 图片和UIL用法概述/" data-id="c79y0hloojvxhlfi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/图片-UIL/">图片 UIL</a></li></ul>
 
     </footer>
   </div>
@@ -417,11 +325,11 @@
       <ul>
         
           <li>
-            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
+            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
           </li>
         
           <li>
-            <a href="/2015/08/11/Android 图片和UIL用法概述/">Android 图片和UIL用法概述</a>
+            <a href="/2015/08/11/Android相册模块实现/">Android相册模块实现</a>
           </li>
         
           <li>
