@@ -67,6 +67,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Android Handler机制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/08/11/Android Handler机制/" class="article-date">
+  <time datetime="2015-08-11T07:31:39.000Z" itemprop="datePublished">8月 11 2015</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/11/Android Handler机制/">Android Handler机制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在android中提供了一种异步回调机制Handler,使用它，我们可以在完成一个很长时间的任务后做出相应的通知</p>
+<p>handler基本使用：</p>
+<blockquote>
+<p>在主线程中，使用handler很简单，new一个Handler对象实现其handleMessage方法，在handleMessage中提供收到消息后相应的处理方法即可</p>
+</blockquote>
+
+        
+          <p class="article-more-link">
+            <a href="/2015/08/11/Android Handler机制/#more">More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://folee.github.io/2015/08/11/Android Handler机制/" data-id="zmz8chxolz6grsdt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Handler/">Handler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Android-代码规范" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/07/14/Android-代码规范/" class="article-date">
@@ -262,51 +310,6 @@
 
 
   
-    <article id="post-Android-结束进程的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/02/03/Android-结束进程的方法/" class="article-date">
-  <time datetime="2015-02-03T12:25:59.000Z" itemprop="datePublished">2月 3 2015</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/02/03/Android-结束进程的方法/">Android 结束进程的方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <pre><code>am force-<span class="operator"><span class="keyword">stop</span>: <span class="keyword">force</span> <span class="keyword">stop</span> everything associated <span class="keyword">with</span> &lt;PACKAGE&gt;.</span>
-</code></pre><p>Android 结束进程，关闭程序的方法，经过这几天的调研，发现了Android结束一个进程的方法</p>
-
-        
-          <p class="article-more-link">
-            <a href="/2015/02/03/Android-结束进程的方法/#more">More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://folee.github.io/2015/02/03/Android-结束进程的方法/" data-id="c68i5wos2urrddfu" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android常用命令/">Android常用命令</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -326,6 +329,10 @@
       <ul>
         
           <li>
+            <a href="/2015/08/11/Android Handler机制/">Android Handler机制</a>
+          </li>
+        
+          <li>
             <a href="/2015/07/14/Android-代码规范/">Android-代码规范</a>
           </li>
         
@@ -341,10 +348,6 @@
             <a href="/2015/02/11/Android开发-NDK-编译和使用静态库、动态库/">Android开发 NDK 编译和使用静态库、动态库</a>
           </li>
         
-          <li>
-            <a href="/2015/02/03/Android-结束进程的方法/">Android 结束进程的方法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -354,7 +357,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a>
+      <a href="/tags/Android-代码规范/" style="font-size: NaNpx;">Android 代码规范</a><a href="/tags/Android常用命令/" style="font-size: NaNpx;">Android常用命令</a><a href="/tags/Daemon/" style="font-size: NaNpx;">Daemon</a><a href="/tags/Handler/" style="font-size: NaNpx;">Handler</a><a href="/tags/NDK/" style="font-size: NaNpx;">NDK</a><a href="/tags/Webview/" style="font-size: NaNpx;">Webview</a><a href="/tags/Wifi/" style="font-size: NaNpx;">Wifi</a>
     </div>
   </div>
 
@@ -363,7 +366,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">May 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
